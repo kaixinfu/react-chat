@@ -12,10 +12,8 @@ export function removeUser() {
 	}
 }
 
-export function addUserAsync(obj) {
-	return dispatch => {
-		setTimeout(() => {
-			dispatch(addUser(obj))
-		}, 1500)
-	}
+export const addUserAsync = obj => dispatch => {
+	setTimeout(() => {
+		dispatch(addUser(obj))
+	}, 1500)
 }

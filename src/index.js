@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {compose} from 'redux';
+import {Provider} from 'react-redux'
 import './index.css';
 import App from './App';
-import {initStore} from './store/createStore'
-import * as userActions from './actions/userActions'
+import {store} from './store/createStore'
 import registerServiceWorker from './registerServiceWorker';
 
-function render() {
-	ReactDOM.render(<App store={initStore} action={userActions} />, document.getElementById('root'));
-}
-render()
-initStore.subscribe(render)
+ReactDOM.render(
+	<Provider store={store}>
+		<App />
+	</Provider>, document.getElementById('root')
+);
 
 registerServiceWorker();
