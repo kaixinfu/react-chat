@@ -99,10 +99,14 @@
           "libraryName": "antd-mobile",
           "style": "css"
         }
-      ]
+      ],
+      ["transform-decorators-legacy"]
     ]
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.4"
   }
 }

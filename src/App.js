@@ -7,7 +7,13 @@ import logo from './logo.svg';
 import './App.css';
 const Item = List.Item;
 
-class App extends Component {
+@connect(
+    state => (
+        {list: state.users.list || []}),
+    dispatch => (
+        {userActions: bindActionCreators(userActions, dispatch)})
+)
+export default class App extends Component {
     constructor() {
         super()
     }
@@ -32,13 +38,3 @@ class App extends Component {
     );
   }
 }
-
-const mapStateToProps = state => ({
-	list: state.users.list || []
-})
-
-const mapActionsToProps = dispatch => ({
-	userActions: bindActionCreators(userActions, dispatch)
-})
-
-export default connect(mapStateToProps, mapActionsToProps)(App);
