@@ -39,6 +39,7 @@
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.1.1",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -93,7 +94,10 @@
     "plugins": [
       [
         "import",
-        { "libraryName": "antd-mobile", "style": "css" }
+        {
+          "libraryName": "antd-mobile",
+          "style": "css"
+        }
       ]
     ]
   },

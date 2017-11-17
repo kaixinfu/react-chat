@@ -11,3 +11,11 @@ export function removeUser() {
 		type: 'REMOVE_USER'
 	}
 }
+
+export function addUserAsync(obj) {
+	return dispatch => {
+		setTimeout(() => {
+			dispatch(addUser(obj))
+		}, 1500)
+	}
+}
