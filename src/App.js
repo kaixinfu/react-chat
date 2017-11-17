@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Button , List} from 'antd-mobile';
-import {createStore} from 'redux';
 import logo from './logo.svg';
 import './App.css';
+import * as userActions from './actions/userActions'
 const Item = List.Item;
 
 class App extends Component {
@@ -18,6 +18,8 @@ class App extends Component {
         })
     }
   render() {
+    const store = this.props.store.getState()
+      console.log(store)
     return (
       <div className="App">
         <header className="App-header">
@@ -27,14 +29,12 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-          <Button onClick={() => this.addItem()} type="primary">添加女优</Button>
           <List renderHeader={() => '女忧列表'}>
               {
-                  this.state.list.map((_, key) => <Item key={key} onClick={() => {}}>
-                      <Item>{_}</Item>
-                  </Item>)
+				  store.users.list.map((_, key) => <Item key={key} extra={`${_.age}岁`}>{_.name}</Item>)
               }
           </List>
+          <Button onClick={() => this.props.store.dispatch(userActions.addUser({name: '毛衣妹妹' + Math.random(), age: '15'}))} type="primary">添加女优</Button>
       </div>
     );
   }
