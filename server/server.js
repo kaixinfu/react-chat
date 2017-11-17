@@ -12,7 +12,7 @@ const User = mongoose.model('user', new mongoose.Schema({
 }))
 //新增
 // User.create({
-// 	user: 'fuyichen',
+// 	user: 'fuyichende',
 // 	age: 15
 // }, function (error, doc) {
 // 	if (!error) {
@@ -36,7 +36,7 @@ app.get('/', function (req, res) {
 	res.send('<h1>hello express</h1>')
 })
 app.get('/data', function (req, res) {
-	User.find({user: 'fuliping'}, function (error, doc) {
+	User.find({}, function (error, doc) {
 		return res.json(doc)
 	})
 })
