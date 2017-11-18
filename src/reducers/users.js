@@ -17,7 +17,6 @@ export default function (state = initialState, action) {
 	
 	switch (type) {
 		case types.ADD_USER:
-			console.log('payload', payload)
 			return {
 				...state,
 				list: [
