@@ -7,13 +7,15 @@ mongoose.connection.on('connected', function () {
 })
 
 const User = mongoose.model('user', new mongoose.Schema({
-	user: {type: String, require: true},
-	age: {type: Number, require: true}
+	name: {type: String, require: true},
+	age: {type: Number, require: true},
+	state: {type: Boolean, require: true}
 }))
 //新增
 // User.create({
-// 	user: 'fuyichende',
-// 	age: 15
+// 	name: '刘凯欣',
+// 	age: 25,
+// 	state: false
 // }, function (error, doc) {
 // 	if (!error) {
 // 		console.log(doc)
@@ -22,11 +24,11 @@ const User = mongoose.model('user', new mongoose.Schema({
 // 	}
 // })
 //删除
-// User.remove({age: '19'}, function (error, doc) {
+// User.remove({age: '25'}, function (error, doc) {
 // 	console.log('doc ===>', doc)
 // })
 //更新
-User.update({user: 'fuyichen'}, {'$set': {age: '10'}}, function (error, doc) {
+User.update({name: '刘凯欣'}, {'$set': {age: '10'}}, function (error, doc) {
 	console.log(doc)
 })
 
@@ -36,7 +38,7 @@ app.get('/', function (req, res) {
 	res.send('<h1>hello express</h1>')
 })
 app.get('/data', function (req, res) {
-	User.find({}, function (error, doc) {
+	User.findOne({name: '刘凯欣'}, function (error, doc) {
 		return res.json(doc)
 	})
 })

@@ -3,6 +3,7 @@ import { Button } from 'antd-mobile';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { Redirect } from 'react-router-dom'
+import axios from 'axios'
 import * as loginActions from '../actions/loginActions'
 import logo from '../logo.svg';
 import '../App.css';
@@ -16,6 +17,9 @@ import '../App.css';
 export default class Login extends Component {
 	constructor() {
 		super()
+	}
+	componentDidMount() {
+		this.props.loginActions.fetchUser()
 	}
 	render() {
 		if (this.props.info.state) {

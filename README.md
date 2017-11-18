@@ -5,6 +5,7 @@
 - [x] [react](https://reactjs.org/)
 - [x] [redux](http://cn.redux.js.org/)
 - [x] [react-router](http://www.ruanyifeng.com/blog/2016/05/react_router.html?utm_source=tool.lu)
+- [x] [axios](https://www.npmjs.com/package/axios)
 - [x] [antd-mobile](https://mobile.ant.design)
 - [x] [node.js](http://nodejs.cn/)
 - [x] [express](http://www.expressjs.com.cn/)
@@ -12,9 +13,9 @@
 
 ## Install
 
-> `git clone git@github.com:liukaixin01/react-chat.git`
+- git clone git@github.com:liukaixin01/react-chat.git
 
-> `npm install`
+- npm install
 
 ## mongodb
 
@@ -26,6 +27,6 @@
 
 ## Dev
 
-> `npm start`
+- npm start
 
-> `nodemon server/server.js`
+- nodemon server/server.js
