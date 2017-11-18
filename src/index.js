@@ -5,7 +5,9 @@ import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
 import './index.css';
 import Login from './component/Login'
 import Dashboard from './component/Dashboard'
+import './config'
 import {store} from './store/createStore'
+
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
