@@ -18,7 +18,6 @@ export default class Login extends Component {
 		super()
 	}
 	render() {
-		console.log('Login ===> render')
 		if (this.props.info.state) {
 			return <Redirect to="/dashboard"></Redirect>
 		}
@@ -26,7 +25,7 @@ export default class Login extends Component {
 			<div className="App">
 				<header className="App-header">
 					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">没有权限，请登录!</h1>
+					<h1 className="App-title">Welcome to login，请登录!</h1>
 				</header>
 				<Button onClick={() => this.props.loginActions.login()} type="primary">登录</Button>
 			</div>
