@@ -18,17 +18,14 @@
 
 ## mongodb
 
-> `下载连接mongodb`
-
-> `连接mongodb：$ mongod --config /usr/local/etc/mongod.conf`
-
-
-> `连接不上请查看：/usr/local/var/log/mongodb/mongo.log 日志`
-
-> `$ sudo mongod`
+- #### Mac OSX 平台安装 MongoDB
+- sudo brew install mongodb
+- sudo mkdir -p /data/db
+- sudo mongod
+- 连接不上请查看：/usr/local/var/log/mongodb/mongo.log
 
 ## Dev
 
 > `npm start`
 
-> `node server/server.js`
+> `nodemon server/server.js`
