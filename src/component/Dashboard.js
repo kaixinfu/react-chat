@@ -2,43 +2,47 @@ import React, { Component } from 'react';
 import { Button , List} from 'antd-mobile';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {Link, Route} from 'react-router-dom'
-import * as userActions from '../actions/userActions'
-import logo from '../logo.svg';
+import {Link, Route, Redirect} from 'react-router-dom'
+import * as loginActions from '../actions/loginActions'
 import '../App.css';
 import Lists from './Lists'
 import Detail from './Detail'
 import Test from './Test'
-const Item = List.Item;
 
 @connect(
 	state => (
-		{list: state.users.list || []}),
+		{info: state.login.info || {}}),
 	dispatch => (
-		{userActions: bindActionCreators(userActions, dispatch)})
+		{loginActions: bindActionCreators(loginActions, dispatch)})
 )
 export default class Dashboard extends Component {
 	constructor() {
 		super()
 	}
 	render() {
-		return (
-			<div className="App">
-				<ul>
-					<li>
-						<Link to="/dashboard/">dashboard</Link>
-					</li>
-					<li>
-						<Link to="/dashboard/list">dashboard/list</Link>
-					</li>
-					<li>
-						<Link to="/dashboard/detail">dashboard/detail</Link>
-					</li>
-				</ul>
-				<Route path="/dashboard/" exact component={Test}></Route>
-				<Route path="/dashboard/list" component={Lists}></Route>
-				<Route path="/dashboard/detail" component={Detail}></Route>
-			</div>
-		);
+		console.log('Dashboard ===> render')
+		
+		if (this.props.info.state) {
+			return (
+				<div className="App">
+					<Route path="/dashboard/" exact component={Test}></Route>
+					<Route path="/dashboard/list" component={Lists}></Route>
+					<Route path="/dashboard/detail" component={Detail}></Route>
+					<Button onClick={() => this.props.loginActions.logout()} type="primary">注销</Button>
+					<ul>
+						<li>
+							<Link to="/dashboard/">dashboard</Link>
+						</li>
+						<li>
+							<Link to="/dashboard/list">dashboard/list</Link>
+						</li>
+						<li>
+							<Link to="/dashboard/detail">dashboard/detail</Link>
+						</li>
+					</ul>
+				</div>
+			)
+		}
+		return <Redirect to="/login"></Redirect>
 	}
 }

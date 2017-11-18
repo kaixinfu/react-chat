@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
-import { Button , List} from 'antd-mobile';
+import { Button } from 'antd-mobile';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import * as userActions from '../actions/userActions'
+import { Redirect } from 'react-router-dom'
+import * as loginActions from '../actions/loginActions'
 import logo from '../logo.svg';
 import '../App.css';
-const Item = List.Item;
 
 @connect(
 	state => (
-		{list: state.users.list || []}),
+		{info: state.login.info || {}}),
 	dispatch => (
-		{userActions: bindActionCreators(userActions, dispatch)})
+		{loginActions: bindActionCreators(loginActions, dispatch)})
 )
 export default class Login extends Component {
 	constructor() {
 		super()
 	}
 	render() {
+		console.log('Login ===> render')
+		if (this.props.info.state) {
+			return <Redirect to="/dashboard"></Redirect>
+		}
 		return (
 			<div className="App">
 				<header className="App-header">
 					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to Login!</h1>
+					<h1 className="App-title">没有权限，请登录!</h1>
 				</header>
-				<Button onClick={() => this.props.userActions.addUser({name: '毛衣妹妹' + Math.random(), age: '15'})} type="primary">Login</Button>
+				<Button onClick={() => this.props.loginActions.login()} type="primary">登录</Button>
 			</div>
 		);
 	}

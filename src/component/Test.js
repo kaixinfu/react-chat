@@ -18,12 +18,11 @@ export default class Test extends Component {
         super()
     }
   render() {
-        console.log(this.props)
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Test!</h1>
+          <h1 className="App-title">Welcome to dashboard!</h1>
         </header>
       </div>
     );
