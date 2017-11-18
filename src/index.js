@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
 import './index.css';
-import Login from './component/Login'
-import Dashboard from './component/Dashboard'
+import Login from './containers/login'
+import Register from './containers/register'
 import './config'
 import {store} from './store/createStore'
 
@@ -13,11 +13,10 @@ import registerServiceWorker from './registerServiceWorker';
 ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
-			<Switch>
+			<div>
 				<Route path='/login' component={Login} ></Route>
-				<Route path='/dashboard' component={Dashboard} ></Route>
-				<Redirect to='/dashboard' ></Redirect>
-			</Switch>
+				<Route path='/register' component={Register} ></Route>
+			</div>
 		</BrowserRouter>
 	</Provider>, document.getElementById('root')
 );
