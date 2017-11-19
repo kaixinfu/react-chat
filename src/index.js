@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
 import './index.css';
 import Login from './containers/login'
 import Register from './containers/register'
+import LoginRoute from './components/logoRoute'
 import './config'
 import {store} from './store/createStore'
 
@@ -14,6 +15,7 @@ ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
 			<div>
+				<LoginRoute />
 				<Route path='/login' component={Login} ></Route>
 				<Route path='/register' component={Register} ></Route>
 			</div>

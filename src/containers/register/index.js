@@ -7,12 +7,12 @@ import '../../App.css';
 import Logo from '../../components/logo'
 const RadioItem = Radio.RadioItem;
 
-@connect(
-	state => (
-		{list: state.users.list || []}),
-	dispatch => (
-		{userActions: bindActionCreators(userActions, dispatch)})
-)
+// @connect(
+// 	state => (
+// 		{list: state.users.list || []}),
+// 	dispatch => (
+// 		{userActions: bindActionCreators(userActions, dispatch)})
+// )
 export default class Register extends Component {
 	constructor() {
 		super()
@@ -28,6 +28,7 @@ export default class Register extends Component {
 		});
 	};
 	render() {
+		console.log('......render')
 		const data = [
 			{ value: 'boss', label: 'boss' },
 			{ value: 'genuis', label: '牛人' },

@@ -1,19 +1,23 @@
+import axios from 'axios'
+import * as types from '../constants/ActionTypes'
 
-export function addUser(obj) {
-	return {
-		type: 'ADD_USER',
-		payload: obj
-	}
-}
-
-export function removeUser() {
-	return {
-		type: 'REMOVE_USER'
-	}
-}
-
-export const addUserAsync = obj => dispatch => {
-	setTimeout(() => {
-		dispatch(addUser(obj))
-	}, 1500)
-}
+// export const fetchUserInfo = () => dispatch => {
+// 	dispatch({
+// 		type: types.FETCH_USERINFO_REQUEST
+// 	})
+// 	return axios({
+// 		method: 'GET',
+// 		url: '/user/info',
+// 	}).then(res => {
+// 		console.log('res', res)
+// 		dispatch({
+// 			type: types.FETCH_USERINFO_SUCCESS,
+// 			payload: res.data
+// 		})
+// 	}).catch(error => {
+// 		dispatch({
+// 			type: types.FETCH_USERINFO_FAILURE,
+// 			payload: error
+// 		})
+// 	})
+// }

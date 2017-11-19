@@ -1,50 +1,8 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const DB_URL = 'mongodb://localhost:27017/chat';
-mongoose.connect(DB_URL)
-mongoose.connection.on('connected', function () {
-	console.log('mongoose connect =======> succse')
-})
-
-const User = mongoose.model('user', new mongoose.Schema({
-	name: {type: String, require: true},
-	age: {type: Number, require: true},
-	state: {type: Boolean, require: true}
-}))
-//新增
-// User.create({
-// 	name: '刘凯欣',
-// 	age: 25,
-// 	state: false
-// }, function (error, doc) {
-// 	if (!error) {
-// 		console.log(doc)
-// 	} else {
-// 		console.log(error)
-// 	}
-// })
-//删除
-// User.remove({age: '25'}, function (error, doc) {
-// 	console.log('doc ===>', doc)
-// })
-//更新
-User.update({name: '刘凯欣'}, {'$set': {age: '10'}}, function (error, doc) {
-	console.log(doc)
-})
-
+const userRouter = require('./user');
 const app = express();
 
-app.get('/', function (req, res) {
-	res.send('<h1>hello express</h1>')
-})
-app.get('/data', function (req, res) {
-	User.findOne({name: '刘凯欣'}, function (error, doc) {
-		return res.json(doc)
-	})
-})
-// app.get('/delete', function (error, doc) {
-//
-// })
+app.use('/user', userRouter)
 app.listen(9000, function () {
 	console.log('node start =========> 9000')
 })
