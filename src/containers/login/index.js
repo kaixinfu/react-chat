@@ -29,12 +29,12 @@ export default class Login extends Component {
 				<WingBlank>
 					<List>
 						<InputItem
-							type='money'
+							// type='money'
 							clear
 							moneyKeyboardAlign="left"
 						>用户</InputItem>
 						<InputItem
-							type='money'
+							// type='money'
 							clear
 							moneyKeyboardAlign="left"
 						>密码</InputItem>

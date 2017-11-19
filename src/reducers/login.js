@@ -2,25 +2,21 @@ import * as types from '../constants/ActionTypes'
 
 const initialState = {
 	info: {
-		name: 'liuaixin',
-		age: '25',
-		state: false,
+		code: ''
 	}
 }
 
 export default function (state = initialState, action) {
-	
 	const {
 		type,
 		payload
 	} = action
-	
 	switch (type) {
-		case types.LOGIN_REQUEST:
+		case types.FETCH_USERINFO_REQUEST:
 			return {
 				...state
 			}
-		case types.LOGIN_SUCCESS:
+		case types.FETCH_USERINFO_SUCCESS:
 			return {
 				...state,
 				info: {
@@ -28,7 +24,7 @@ export default function (state = initialState, action) {
 					...payload
 				}
 			}
-		case types.LOGIN_REQUEST_FAILURE:
+		case types.FETCH_USERINFO_FAILURE:
 			return {
 				...state
 			}

@@ -7,60 +7,74 @@ import '../../App.css';
 import Logo from '../../components/logo'
 const RadioItem = Radio.RadioItem;
 
-// @connect(
-// 	state => (
-// 		{list: state.users.list || []}),
-// 	dispatch => (
-// 		{userActions: bindActionCreators(userActions, dispatch)})
-// )
+@connect(
+	state => (
+		{user: state.user || {}}),
+	dispatch => (
+		{userActions: bindActionCreators(userActions, dispatch)})
+)
 export default class Register extends Component {
 	constructor() {
 		super()
 		this.state = {
-			type: 'genuis',
+			_type: 'genuis',
 		};
 		this.onChange = this.onChange.bind(this);
 	}
-	onChange = (type) => {
+	onChange = (_type) => {
 		console.log('checkbox');
 		this.setState({
-			type,
+			_type,
 		});
 	};
+	handle = (key, value) => {
+		this.props.userActions.registerChange(key, value)
+	}
 	render() {
-		console.log('......render')
 		const data = [
 			{ value: 'boss', label: 'boss' },
 			{ value: 'genuis', label: '牛人' },
 		];
-		const { type } = this.state;
+		const {
+			name,
+			password,
+			passwordAgain,
+			type
+		} = this.props.user
+		const { _type } = this.state;
 		return (
 			<div className="App">
 				<Logo />
 				<h1 className="App-title">注册页!</h1>
 				<List>
 					<InputItem
-						type='money'
+						// type='money'
 						clear
+						value={name}
+						onChange={(e) => this.handle('name', e)}
 						moneyKeyboardAlign="left"
 					>用户</InputItem>
 					<WhiteSpace />
 					<InputItem
-						type='money'
+						type='password'
 						clear
+						value={password}
+						onChange={(e) => this.handle('password', e)}
 						moneyKeyboardAlign="left"
 					>密码</InputItem>
 					<WhiteSpace />
 					<InputItem
-						type='money'
+						type='password'
 						clear
+						value={passwordAgain}
+						onChange={(e) => this.handle('passwordAgain', e)}
 						moneyKeyboardAlign="left"
 					>确认密码</InputItem>
 				</List>
 				<WhiteSpace />
 				<List>
 					{data.map(i => (
-						<RadioItem key={i.value} checked={type === i.value} onChange={() => this.onChange(i.value)}>
+						<RadioItem key={i.value} checked={_type === i.value} onChange={() => this.onChange(i.value)}>
 							{i.label}
 						</RadioItem>
 					))}

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import * as userActions from '../../actions/userActions'
-import {BrowserRouter, Route, Redirect, withRouter} from 'react-router-dom'
+import * as loginActions from '../../actions/loginActions'
+import { withRouter } from 'react-router-dom'
 import '../../App.css';
 
 @connect(
 	state => (
-		{info: state.user.info || {}}),
+		{info: state.login.info || {}}),
 	dispatch => (
-		{userActions: bindActionCreators(userActions, dispatch)})
+		{loginActions: bindActionCreators(loginActions, dispatch)})
 )
 @withRouter
 export default class LoginRoute extends Component {
@@ -22,7 +22,7 @@ export default class LoginRoute extends Component {
 		if (publick.indexOf(pathname) > -1) {
 			return null
 		}
-		this.props.userActions.fetchUser(this.props.history)
+		this.props.loginActions.fetchLogin(this.props.history)
 	}
 	render() {
 		return null

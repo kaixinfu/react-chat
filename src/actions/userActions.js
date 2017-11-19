@@ -1,50 +1,67 @@
 import axios from 'axios'
 import * as types from '../constants/ActionTypes'
 
-export const fetchUserInfo = () => dispatch => {
+//错误提示
+function errorMessage(message) {
+	return {
+		message,
+		type: types.ERROR_MASSAGE
+	}
+}
+//获取用户信息
+export const fetchUser = _ => dispatch => {
 	dispatch({
-		type: types.FETCH_USERINFO_REQUEST
+		type: types.LOGIN_REQUEST
 	})
 	return axios({
 		method: 'GET',
-		url: '/user/info',
+		url: '/data',
 	}).then(res => {
-		console.log('res', res)
 		dispatch({
-			type: types.FETCH_USERINFO_SUCCESS,
+			type: types.LOGIN_SUCCESS,
 			payload: res.data
 		})
 	}).catch(error => {
 		dispatch({
-			type: types.FETCH_USERINFO_FAILURE,
+			type: types.LOGIN_REQUEST_FAILURE,
 			payload: error
 		})
 	})
 }
-
-export const fetchUser = callback => dispatch => {
+//提交注册信息
+export const postRegister = (name, password, passwordAgain, type) => dispatch => {
+	//校验注册信息是否为空
+	if (!!!name || !!!password || !!!passwordAgain || !!!type) return errorMessage('用户名密码必须输入')
+	if (password !== passwordAgain ) return errorMessage('两次密码输入不一致')
 	dispatch({
-		type: types.FETCH_USERINFO_REQUEST
+		type: types.REGISTER_REQUEST
 	})
-	return fetch('/user/info').then((res) => {
-		if (res && res.status == 200) {
-			res.text().then(data => {
-				const info = JSON.parse(data)
-				dispatch({
-					type: types.FETCH_USERINFO_SUCCESS,
-					payload: info
-				})
-				if (info.code == 0) {
-					console.log('==> 0')
-				} else {
-					callback.push('/login')
-				}
-			})
+	return axios({
+		method: 'POST',
+		url: '/user/register',
+		data: {
+			name: name,
+			password: password,
+			passwordAgain: passwordAgain,
+			type: type
 		}
-	}).catch(error => {
+	}).then(res => {
+		console.log('postRegister ==========> ', res)
 		dispatch({
-			type: types.FETCH_USERINFO_FAILURE,
-			payload: error
+			type: types.LOGIN_SUCCESS,
+			payload: res.data
 		})
+	}).catch(error => {
+		dispatch(errorMessage(error))
+	})
+}
+//暂存注册信息
+export const registerChange = (key, value) => dispatch => {
+	dispatch({
+		type: types.REGISTER_CHANGE,
+		payload: {
+			key: key,
+			value: value
+		}
 	})
 }

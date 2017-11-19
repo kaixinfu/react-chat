@@ -1,41 +1,48 @@
 import * as types from '../constants/ActionTypes'
 
 const initialState = {
-	info: {
-		code: ''
-	}
+	isAuth: '',
+	massage: '',
+	name: '',
+	password:'',
+	passwordAgain: '',
+	type: ''
 }
 
 export default function (state = initialState, action) {
-	
 	const {
 		type,
 		payload
 	} = action
 	switch (type) {
-		case types.FETCH_USERINFO_REQUEST:
+		case types.REGISTER_REQUEST:
 			return {
 				...state
 			}
-		case types.FETCH_USERINFO_SUCCESS:
+		case types.REGISTER_SUCCESS:
 			return {
 				...state,
-				info: {
-					...state.info,
-					...payload
-				}
+				...payload,
+				isAuth: true,
 			}
-		case types.FETCH_USERINFO_FAILURE:
+		case types.REGISTER_FAILURE:
 			return {
 				...state
+			}
+		case types.REGISTER_CHANGE:
+			const {
+				key,
+				value
+			} = payload
+			return {
+				...state,
+				[key]: value
 			}
 		case types.LOGOUT:
 			return {
 				...state,
-				info: {
-					...state.info,
-					state: false
-				}
+				isAuth: false,
+				massage: payload
 			}
 		default:
 			return state
