@@ -3,10 +3,12 @@ import * as types from '../constants/ActionTypes'
 const initialState = {
 	isAuth: '',
 	massage: '',
-	name: '',
-	password:'',
-	passwordAgain: '',
-	type: ''
+	info: {
+		name: '',
+		password:'',
+		passwordAgain: '',
+		type: 'genuis'
+	}
 }
 
 export default function (state = initialState, action) {
@@ -17,7 +19,10 @@ export default function (state = initialState, action) {
 	switch (type) {
 		case types.REGISTER_REQUEST:
 			return {
-				...state
+				...state,
+				info: {
+					...state.info
+				}
 			}
 		case types.REGISTER_SUCCESS:
 			return {
@@ -27,7 +32,21 @@ export default function (state = initialState, action) {
 			}
 		case types.REGISTER_FAILURE:
 			return {
-				...state
+				...state,
+				info: {
+					...state.info
+				},
+				isAuth: false,
+				massage: payload
+			}
+		case types.ERROR_MASSAGE:
+			return {
+				...state,
+				info: {
+					...state.info
+				},
+				isAuth: false,
+				massage: payload
 			}
 		case types.REGISTER_CHANGE:
 			const {
@@ -36,7 +55,10 @@ export default function (state = initialState, action) {
 			} = payload
 			return {
 				...state,
-				[key]: value
+				info: {
+					...state.info,
+					[key]: value
+				}
 			}
 		case types.LOGOUT:
 			return {

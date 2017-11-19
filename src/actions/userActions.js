@@ -1,12 +1,16 @@
 import axios from 'axios'
 import * as types from '../constants/ActionTypes'
+import {Toast} from 'antd-mobile'
 
 //错误提示
 function errorMessage(message) {
 	return {
-		message,
-		type: types.ERROR_MASSAGE
+		type: types.ERROR_MASSAGE,
+		payload: message
 	}
+}
+function info(error) {
+	Toast.info(error, 1);
 }
 //获取用户信息
 export const fetchUser = _ => dispatch => {
@@ -29,10 +33,26 @@ export const fetchUser = _ => dispatch => {
 	})
 }
 //提交注册信息
-export const postRegister = (name, password, passwordAgain, type) => dispatch => {
+export const postRegister = user => dispatch => {
+	const {
+		name,
+		password,
+		passwordAgain,
+		type
+	} = user
+	const checkInfo = '用户名密码必须输入'
+	const checkPassword = '两次密码输入不一致'
 	//校验注册信息是否为空
-	if (!!!name || !!!password || !!!passwordAgain || !!!type) return errorMessage('用户名密码必须输入')
-	if (password !== passwordAgain ) return errorMessage('两次密码输入不一致')
+	if (!name || !password || !passwordAgain || !type) {
+		dispatch(errorMessage(checkInfo))
+		info(checkInfo)
+		return
+	}
+	if (password !== passwordAgain ) {
+		dispatch(errorMessage(checkPassword))
+		info(checkPassword)
+		return
+	}
 	dispatch({
 		type: types.REGISTER_REQUEST
 	})
