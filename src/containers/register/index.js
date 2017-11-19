@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { List, InputItem, WhiteSpace, WingBlank, Button, Radio, Toast} from 'antd-mobile';
 import {bindActionCreators} from 'redux'
+import {Redirect} from 'react-router-dom'
 import * as userActions from '../../actions/userActions'
 import '../../App.css';
 import Logo from '../../components/logo'
@@ -9,7 +10,10 @@ const RadioItem = Radio.RadioItem;
 
 @connect(
 	state => (
-		{user: state.user.info || {}}),
+		{
+			user: state.user.info || {},
+			pathTo: state.user.pathTo || ''
+		}),
 	dispatch => (
 		{userActions: bindActionCreators(userActions, dispatch)})
 )
@@ -36,6 +40,9 @@ export default class Register extends Component {
 			passwordAgain,
 			type
 		} = this.props.user
+		if (this.props.pathTo) {
+			return <Redirect to={this.props.pathTo} />
+		}
 		return (
 			<div className="App">
 				<Logo />

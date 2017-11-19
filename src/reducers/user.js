@@ -1,6 +1,8 @@
 import * as types from '../constants/ActionTypes'
+import {pathTo} from '../utils'
 
 const initialState = {
+	pathTo: '',
 	isAuth: '',
 	massage: '',
 	info: {
@@ -28,6 +30,7 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				...payload,
+				pathTo: pathTo(payload),
 				isAuth: true,
 			}
 		case types.REGISTER_FAILURE:

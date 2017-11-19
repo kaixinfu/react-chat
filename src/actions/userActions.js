@@ -56,16 +56,25 @@ export const postRegister = userInfo => dispatch => {
 	dispatch({
 		type: types.REGISTER_REQUEST
 	})
-	return axios({
-		url: '/user/register',
+	return fetch('/user/register', {
 		method: 'POST',
-		data: userInfo
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(userInfo)
 	}).then(res => {
-		console.log('postRegister ==========> ', res)
-		dispatch({
-			type: types.LOGIN_SUCCESS,
-			payload: res.data
-		})
+		return res.json()
+	}).then(req => {
+		if (req.code == 0) {
+			dispatch({
+				type: types.REGISTER_SUCCESS,
+				payload: userInfo
+			})
+		} else {
+			dispatch(errorMessage(req.message))
+			info(req.message)
+		}
 	}).catch(error => {
 		dispatch(errorMessage(error))
 	})

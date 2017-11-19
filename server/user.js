@@ -21,11 +21,11 @@ Router.post('/register', function (req, res) {
 	} = req.body
 	User.findOne({user: user}, function (error, doc) {
 		if (doc) {
-			return res.json({code: 1, maassage: '用户名重复'})
+			return res.json({code: 1, message: '用户名重复'})
 		} else {
 			User.create({user, password, type}, function (e, d) {
 				if (e) {
-					return res.json({code: 1, massage: '请求失败'})
+					return res.json({code: 1, message: '请求失败'})
 				} else {
 					return res.json({code: 0})
 				}
