@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
 import './index.css';
 import Login from './containers/login'
 import Register from './containers/register'
+import Boss from './containers/boss'
 import LoginRoute from './components/logoRoute'
 import './config'
 import {store} from './store/createStore'
@@ -16,6 +17,7 @@ ReactDOM.render(
 		<BrowserRouter>
 			<div>
 				<LoginRoute />
+				<Route path='/boss' component={Boss} ></Route>
 				<Route path='/login' component={Login} ></Route>
 				<Route path='/register' component={Register} ></Route>
 			</div>

@@ -22,17 +22,23 @@ export const fetchUserInfo = () => dispatch => {
 	})
 }
 
-export const fetchUser = () => dispatch => {
+export const fetchUser = callback => dispatch => {
 	dispatch({
 		type: types.FETCH_USERINFO_REQUEST
 	})
 	return fetch('/user/info').then((res) => {
 		if (res && res.status == 200) {
 			res.text().then(data => {
+				const info = JSON.parse(data)
 				dispatch({
 					type: types.FETCH_USERINFO_SUCCESS,
-					payload: JSON.parse(data)
+					payload: info
 				})
+				if (info.code == 0) {
+					console.log('==> 0')
+				} else {
+					callback.push('/login')
+				}
 			})
 		}
 	}).catch(error => {
