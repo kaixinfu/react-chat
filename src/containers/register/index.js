@@ -31,7 +31,7 @@ export default class Register extends Component {
 	}
 	render() {
 		const {
-			name,
+			user,
 			password,
 			passwordAgain,
 			type
@@ -44,8 +44,8 @@ export default class Register extends Component {
 					<InputItem
 						// type='money'
 						clear
-						value={name}
-						onChange={(e) => this.handleClick('name', e)}
+						value={user}
+						onChange={(e) => this.handleClick('user', e)}
 						moneyKeyboardAlign="left"
 					>用户</InputItem>
 					<WhiteSpace />

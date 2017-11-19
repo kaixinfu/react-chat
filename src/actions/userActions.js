@@ -33,17 +33,17 @@ export const fetchUser = _ => dispatch => {
 	})
 }
 //提交注册信息
-export const postRegister = user => dispatch => {
+export const postRegister = userInfo => dispatch => {
 	const {
-		name,
+		user,
 		password,
 		passwordAgain,
 		type
-	} = user
+	} = userInfo
 	const checkInfo = '用户名密码必须输入'
 	const checkPassword = '两次密码输入不一致'
 	//校验注册信息是否为空
-	if (!name || !password || !passwordAgain || !type) {
+	if (!user || !password || !passwordAgain || !type) {
 		dispatch(errorMessage(checkInfo))
 		info(checkInfo)
 		return
@@ -57,14 +57,9 @@ export const postRegister = user => dispatch => {
 		type: types.REGISTER_REQUEST
 	})
 	return axios({
-		method: 'POST',
 		url: '/user/register',
-		data: {
-			name: name,
-			password: password,
-			passwordAgain: passwordAgain,
-			type: type
-		}
+		method: 'POST',
+		data: userInfo
 	}).then(res => {
 		console.log('postRegister ==========> ', res)
 		dispatch({

@@ -4,7 +4,7 @@ const initialState = {
 	isAuth: '',
 	massage: '',
 	info: {
-		name: '',
+		user: '',
 		password:'',
 		passwordAgain: '',
 		type: 'genuis'
