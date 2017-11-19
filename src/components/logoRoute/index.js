@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import * as userActions from '../../actions/userActions'
+import '../../App.css';
+
+@connect(
+	state => (
+		{info: state.user.info || {}}),
+	dispatch => (
+		{userActions: bindActionCreators(userActions, dispatch)})
+)
 export default class LoginRoute extends Component {
 	constructor() {
 		super()
-		console.log('.......super')
 	}
 	componentDidMount() {
-		axios.get('/user/info').then(res =>{
-			console.log('res =========> ', res)
-				if (res && res.status ==200) {
-					console.log('res', res)
-				}
-		}).catch(error => {
-			console.log(error)
-		})
+		this.props.userActions.fetchUser()
 	}
 	render() {
-		console.log('Lists ===> LoginRoute')
+		console.log('Lists ===> LoginRoute', this.props.info)
 		return null
 	}
 }

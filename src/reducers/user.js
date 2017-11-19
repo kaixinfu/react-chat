@@ -12,7 +12,6 @@ export default function (state = initialState, action) {
 		type,
 		payload
 	} = action
-	console.log('payload....', type)
 	switch (type) {
 		case types.FETCH_USERINFO_REQUEST:
 			return {

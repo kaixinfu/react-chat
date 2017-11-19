@@ -7,4 +7,5 @@ import user from './user'
 export default combineReducers({
 	login,
 	users,
+	user
 })
