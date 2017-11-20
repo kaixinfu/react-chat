@@ -44,7 +44,7 @@ Router.post('/login', function (req, res) {
 		user,
 		password,
 	} = req.body
-	User.findOne({user, password: md5password(password)}, {password: 0}, function (error, doc) {
+	User.findOne({user, password: md5password(password)}, {password: 0, __v: 0, _id: 0}, function (error, doc) {
 		if (!doc) {
 			return res.json({code: 1, message: '用户名或者密码错误'})
 		} else {
