@@ -67,6 +67,7 @@ export const postRegister = userInfo => dispatch => {
 		return res.json()
 	}).then(req => {
 		if (req.code == 0) {
+			info(req.message)
 			dispatch({
 				type: types.REGISTER_SUCCESS,
 				payload: userInfo
