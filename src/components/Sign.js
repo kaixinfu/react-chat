@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button , List} from 'antd-mobile';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import * as userActions from '../actions/userActions'
+import * as userActions from '../actions/registerActions'
 import logo from '../logo.svg';
 import '../App.css';
 const Item = List.Item;

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import { List, InputItem, WhiteSpace, WingBlank, Button, Radio, Toast} from 'antd-mobile';
 import {bindActionCreators} from 'redux'
 import {Redirect} from 'react-router-dom'
-import * as userActions from '../../actions/userActions'
+import * as registerActions from '../../actions/registerActions'
 import '../../App.css';
 import Logo from '../../components/logo'
 const RadioItem = Radio.RadioItem;
@@ -11,11 +11,11 @@ const RadioItem = Radio.RadioItem;
 @connect(
 	state => (
 		{
-			user: state.user.info || {},
-			pathTo: state.user.pathTo || ''
+			register: state.register.info || {},
+			pathTo: state.register.pathTo || ''
 		}),
 	dispatch => (
-		{userActions: bindActionCreators(userActions, dispatch)})
+		{registerActions: bindActionCreators(registerActions, dispatch)})
 )
 export default class Register extends Component {
 	constructor() {
@@ -27,11 +27,11 @@ export default class Register extends Component {
 			]
 		};
 	}
-	handleClick = (key, value) => {
-		this.props.userActions.registerChange(key, value)
+	handleChage = (key, value) => {
+		this.props.registerActions.registerChange(key, value)
 	}
 	handleSubmit = () => {
-		this.props.userActions.postRegister(this.props.user)
+		this.props.registerActions.postRegister(this.props.register)
 	}
 	render() {
 		const {
@@ -39,7 +39,7 @@ export default class Register extends Component {
 			password,
 			passwordAgain,
 			type
-		} = this.props.user
+		} = this.props.register
 		if (this.props.pathTo) {
 			return <Redirect to={this.props.pathTo} />
 		}
@@ -52,7 +52,7 @@ export default class Register extends Component {
 						// type='money'
 						clear
 						value={user}
-						onChange={(e) => this.handleClick('user', e)}
+						onChange={(e) => this.handleChage('user', e)}
 						moneyKeyboardAlign="left"
 					>用户</InputItem>
 					<WhiteSpace />
@@ -60,7 +60,7 @@ export default class Register extends Component {
 						type='password'
 						clear
 						value={password}
-						onChange={(e) => this.handleClick('password', e)}
+						onChange={(e) => this.handleChage('password', e)}
 						moneyKeyboardAlign="left"
 					>密码</InputItem>
 					<WhiteSpace />
@@ -68,14 +68,14 @@ export default class Register extends Component {
 						type='password'
 						clear
 						value={passwordAgain}
-						onChange={(e) => this.handleClick('passwordAgain', e)}
+						onChange={(e) => this.handleChage('passwordAgain', e)}
 						moneyKeyboardAlign="left"
 					>确认密码</InputItem>
 				</List>
 				<WhiteSpace />
 				<List>
 					{this.state.data.map(i => (
-						<RadioItem key={i.value} checked={type === i.value} onChange={() => this.handleClick('type', i.value)}>
+						<RadioItem key={i.value} checked={type === i.value} onChange={() => this.handleChage('type', i.value)}>
 							{i.label}
 						</RadioItem>
 					))}

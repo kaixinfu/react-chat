@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import * as userActions from '../actions/userActions'
+import * as userActions from '../actions/registerActions'
 import '../App.css';
 
 @connect(

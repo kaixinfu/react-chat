@@ -13,11 +13,11 @@ Router.get('/list', function (req, res) {
 		return res.json(doc)
 	})
 });
-
+//删除信息
 // User.remove({}, function (error, doc) {
 // 	// return res.json(doc)
 // })
-
+//注册信息
 Router.post('/register', function (req, res) {
 	const {
 		user,
@@ -35,6 +35,20 @@ Router.post('/register', function (req, res) {
 					return res.json({code: 0, message: '注册成功'})
 				}
 			})
+		}
+	})
+})
+//登录信息
+Router.post('/login', function (req, res) {
+	const {
+		user,
+		password,
+	} = req.body
+	User.findOne({user, password: md5password(password)}, {password: 0}, function (error, doc) {
+		if (!doc) {
+			return res.json({code: 1, message: '用户名或者密码错误'})
+		} else {
+			return res.json({code: 0, message: '登陆成功', data: doc})
 		}
 	})
 })

@@ -5,7 +5,7 @@ import {Toast} from 'antd-mobile'
 //错误提示
 function errorMessage(message) {
 	return {
-		type: types.ERROR_MASSAGE,
+		type: types.LOGIN_FAILURE,
 		payload: message
 	}
 }
@@ -27,7 +27,7 @@ export const fetchUser = _ => dispatch => {
 		})
 	}).catch(error => {
 		dispatch({
-			type: types.LOGIN_REQUEST_FAILURE,
+			type: types.LOGIN_FAILURE,
 			payload: error
 		})
 	})

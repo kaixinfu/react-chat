@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { List, InputItem, WhiteSpace, WingBlank, Button } from 'antd-mobile';
-import * as userActions from '../../actions/userActions'
+import {Redirect} from 'react-router-dom'
+import * as loginActions from '../../actions/loginActions'
 import '../../App.css';
 import Logo from '../../components/logo'
 
 @connect(
-	state => (
-		{list: state.users.list || []}),
+	state => ({
+		user: state.login.info.user || [],
+		pathTo: state.login.info.pathTo || ''
+	}),
 	dispatch => (
-		{userActions: bindActionCreators(userActions, dispatch)})
+		{loginActions: bindActionCreators(loginActions, dispatch)})
 )
 export default class Login extends Component {
 	constructor() {
@@ -20,7 +23,20 @@ export default class Login extends Component {
 	register() {
 		this.props.history.push('/register')
 	}
+	handleChage = (key, value) => {
+		this.props.loginActions.loginChange(key, value)
+	}
+	handleSubmit = () => {
+		this.props.loginActions.postLogin(this.props.user)
+	}
 	render() {
+		const {
+			user,
+			password
+		} = this.props.user
+		if (this.props.pathTo) {
+			return <Redirect to={this.props.pathTo} />
+		}
 		return (
 			<div className="App">
 				<Logo />
@@ -31,16 +47,20 @@ export default class Login extends Component {
 						<InputItem
 							// type='money'
 							clear
+							value={user}
+							onChange={(e) => this.handleChage('user', e)}
 							moneyKeyboardAlign="left"
 						>用户</InputItem>
 						<InputItem
-							// type='money'
+							type='password'
 							clear
+							value={password}
+							onChange={(e) => this.handleChage('password', e)}
 							moneyKeyboardAlign="left"
 						>密码</InputItem>
 					</List>
 					<WhiteSpace />
-					<Button type="primary">登录</Button>
+					<Button onClick={this.handleSubmit} type="primary">登录</Button>
 					<WhiteSpace />
 					<Button onClick={this.register} type="primary">注册</Button>
 				</WingBlank>
