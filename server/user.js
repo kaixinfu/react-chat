@@ -62,7 +62,11 @@ Router.post('/login', function (req, res) {
 		if (!doc) {
 			return res.json({code: 1, message: '用户名或者密码错误'})
 		} else {
-			res.cookie('userid', doc._id)
+			res.append("Cache-Control", "no-cache, no-store");
+			res.append('Set-Cookie', 'foo=bar; Path=/; HttpOnly');
+			res.append("connection", "close");
+			res.append("credentials", "include");
+			res.cookie('user_id', doc._id)
 			return res.json({code: 0, message: '登陆成功', data: doc})
 		}
 	})

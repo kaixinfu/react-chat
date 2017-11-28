@@ -87,9 +87,11 @@ export const postLogin = loginInfo => dispatch => {
 	})
 	return fetch('/user/login', {
 		method: 'POST',
+		'credentials' : 'include',
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
+			'credentials' : 'include'
 		},
 		body: JSON.stringify(loginInfo)
 	}).then(res => {
