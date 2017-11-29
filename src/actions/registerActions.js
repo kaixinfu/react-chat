@@ -58,6 +58,7 @@ export const postRegister = userInfo => dispatch => {
 	})
 	return fetch('/user/register', {
 		method: 'POST',
+		'credentials' : 'include',
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',

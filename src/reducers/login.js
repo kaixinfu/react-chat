@@ -7,7 +7,7 @@ const initialState = {
 		pathTo: '',
 		user: {
 			user: '',
-			password: ''
+			type: ''
 		}
 	}
 }
@@ -39,6 +39,16 @@ export default function (state = initialState, action) {
 				info: {
 					...state.info,
 					pathTo: pathTo(payload),
+				}
+			}
+		case types.LOGIN_FIRST:
+			return {
+				...state,
+				info: {
+					...state.info,
+					user: {
+						...payload
+					}
 				}
 			}
 		case types.FETCH_USERINFO_REQUEST:

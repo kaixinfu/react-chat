@@ -22,7 +22,7 @@ export default class LoginRoute extends Component {
 		if (publick.indexOf(pathname) > -1) {
 			return null
 		}
-		this.props.loginActions.fetchLogin(this.props.history)
+		this.props.loginActions.fetchLogin(this.props.history, this.props)
 	}
 	render() {
 		return null

@@ -6,12 +6,11 @@ const User = model.getModel('user');
 const filter = {password: 0, __v: 0}
 
 Router.get('/info', function (req, res) {
-	const {userid} = req.cookies
-	console.log('userid ========> ', userid)
-	if (!userid) {
+	const {user_id} = req.cookies
+	if (!user_id) {
 		return res.json({code: 1})
 	} else {
-		User.findOne({_id: userid}, filter, function (error, doc) {
+		User.findOne({_id: user_id}, filter, function (error, doc) {
 			if (error) {
 				return res.json({code: 1, message: '网路异常'})
 			}
@@ -42,13 +41,23 @@ Router.post('/register', function (req, res) {
 		if (doc) {
 			return res.json({code: 1, message: '用户名已存在'})
 		} else {
-			User.create({user, type, password: md5password(password)}, function (e, d) {
-				if (e) {
+			const userModel = new User({user, type, password: md5password(password)});
+			userModel.save(function (error, doc) {
+				if (error) {
 					return res.json({code: 1, message: '请求失败'})
 				} else {
-					return res.json({code: 0, message: '注册成功'})
+					const {_id, user, type} = doc
+					res.cookie('user_id', doc._id)
+					return res.json({code: 0, message: '注册成功', data: {_id, user, type}})
 				}
 			})
+			// User.create({user, type, password: md5password(password)}, function (e, d) {
+			// 	if (e) {
+			// 		return res.json({code: 1, message: '请求失败'})
+			// 	} else {
+			// 		return res.json({code: 0, message: '注册成功'})
+			// 	}
+			// })
 		}
 	})
 })
@@ -63,7 +72,6 @@ Router.post('/login', function (req, res) {
 			return res.json({code: 1, message: '用户名或者密码错误'})
 		} else {
 			res.append("Cache-Control", "no-cache, no-store");
-			res.append('Set-Cookie', 'foo=bar; Path=/; HttpOnly');
 			res.append("connection", "close");
 			res.append("credentials", "include");
 			res.cookie('user_id', doc._id)
