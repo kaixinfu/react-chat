@@ -17,9 +17,11 @@ ReactDOM.render(
 		<BrowserRouter>
 			<div>
 				<LoginRoute />
-				<Route path='/boss' component={Boss} ></Route>
-				<Route path='/login' component={Login} ></Route>
-				<Route path='/register' component={Register} ></Route>
+				<Switch>
+					<Route path='/bossinfo' component={Boss} ></Route>
+					<Route path='/login' component={Login} ></Route>
+					<Route path='/register' component={Register} ></Route>
+				</Switch>
 			</div>
 		</BrowserRouter>
 	</Provider>, document.getElementById('root')
