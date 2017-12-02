@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { List, InputItem, WhiteSpace, WingBlank, Button, Radio, Toast} from 'antd-mobile';
 import {bindActionCreators} from 'redux'
@@ -18,6 +19,9 @@ const RadioItem = Radio.RadioItem;
 		{registerActions: bindActionCreators(registerActions, dispatch)})
 )
 export default class Register extends Component {
+	static PropTypes = {
+		registerActions: PropTypes.object.isRequired
+	}
 	constructor() {
 		super()
 		this.state = {

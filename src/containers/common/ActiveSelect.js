@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { NavBar, Grid , List} from 'antd-mobile';
 import logo from '../../logo.svg';
 import '../../App.css';
 export default class ActiveSelect extends Component {
+    static PropTypes = {
+		select: PropTypes.func.isRequired
+    }
     constructor() {
         super()
         this.state = {

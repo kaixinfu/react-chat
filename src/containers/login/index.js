@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { List, InputItem, WhiteSpace, WingBlank, Button } from 'antd-mobile';
@@ -16,6 +17,9 @@ import Logo from '../../components/logo'
 		{loginActions: bindActionCreators(loginActions, dispatch)})
 )
 export default class Login extends Component {
+	static PropTypes = {
+		loginActions: PropTypes.object.isRequired
+	}
 	constructor() {
 		super()
 		this.register = this.register.bind(this);

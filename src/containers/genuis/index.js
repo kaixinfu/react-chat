@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { NavBar, Icon , WingBlank, List, InputItem, WhiteSpace, Button, TextareaItem} from 'antd-mobile';
@@ -16,6 +17,10 @@ import '../../App.css';
 	genuisActions: bindActionCreators(genuisActions, dispatch)
 }))
 export default class Genuis extends Component {
+	static PropTypes = {
+		userActions: PropTypes.object.isRequired,
+		genuisActions: PropTypes.object.isRequired
+	}
     constructor() {
         super()
     }
