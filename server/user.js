@@ -51,14 +51,21 @@ Router.post('/register', function (req, res) {
 					return res.json({code: 0, message: '注册成功', data: {_id, user, type}})
 				}
 			})
-			// User.create({user, type, password: md5password(password)}, function (e, d) {
-			// 	if (e) {
-			// 		return res.json({code: 1, message: '请求失败'})
-			// 	} else {
-			// 		return res.json({code: 0, message: '注册成功'})
-			// 	}
-			// })
 		}
+	})
+})
+//公开信息
+Router.post('/update', function (req, res) {
+	const {user_id} = req.cookies
+	if (!user_id) {
+		return res.json({code: 1, message: '请先注册'})
+	}
+	User.findByIdAndUpdate(user_id, req.body, function (error, doc) {
+		const data = Object.assign({}, {
+			user: doc.user,
+			type: doc.type
+		}, req.body)
+		return res.json({code: 0, data: data, message: '更新成功'})
 	})
 })
 //登录信息

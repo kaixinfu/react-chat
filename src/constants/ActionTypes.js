@@ -14,8 +14,11 @@ export const REGISTER_CHANGE = 'REGISTER_CHANGE';
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
-
 export const LOGOUT = 'LOGOUT';
 //用户
 export const ADD_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
+//用户公开信息
+export const PUBLICK_CHANGE = 'PUBLICK_CHANGE';
+//用户更新
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
