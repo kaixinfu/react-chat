@@ -20,7 +20,7 @@ export default class Genuis extends Component {
         super()
     }
 	handleChage = (key, value) => {
-		this.props.userActions.publickChange(key, value)
+		this.props.genuisActions.genuisChange(key, value)
 	}
 	select = (v) => {
         // console.log(v)
