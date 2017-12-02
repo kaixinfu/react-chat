@@ -29,9 +29,12 @@ export default function (state = initialState, action) {
 		case types.REGISTER_SUCCESS:
 			return {
 				...state,
-				...payload,
 				pathTo: pathTo(payload),
 				isAuth: true,
+				info: {
+					...state.info,
+					...payload,
+				}
 			}
 		case types.REGISTER_FAILURE:
 			return {

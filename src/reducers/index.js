@@ -1,13 +1,17 @@
 import {combineReducers} from 'redux';
 
 import login from './login'
-import publick from './publick'
+import boss from './boss'
+import genuis from './genuis'
+import user from './user'
 import users from './users'
 import register from './register'
 
 export default combineReducers({
 	login,
-	publick,
+	boss,
+	genuis,
+	user,
 	users,
 	register
 })

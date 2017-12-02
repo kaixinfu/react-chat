@@ -23,11 +23,11 @@ export const update = data => dispatch => {
 		},
 		body: JSON.stringify(data)
 	}).then(res => {
-		console.log('res ====> ', res)
 		return res.json()
 	}).then(req => {
 		if (req.code == 0) {
 			info(req.message)
+			console.log('req.data ====> ', req.data)
 			dispatch({
 				type: types.AUTH_SUCCESS,
 				payload: req.data
@@ -35,16 +35,6 @@ export const update = data => dispatch => {
 		} else {
 			dispatch(errorMessage(req.message))
 			info(req.message)
-		}
-	})
-}
-//暂存公开信息
-export const publickChange = (key, value) => dispatch => {
-	dispatch({
-		type: types.PUBLICK_CHANGE,
-		payload: {
-			key: key,
-			value: value
 		}
 	})
 }

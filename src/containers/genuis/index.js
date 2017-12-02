@@ -5,44 +5,42 @@ import { NavBar, Icon , WingBlank, List, InputItem, WhiteSpace, Button, Textarea
 import {Redirect} from 'react-router-dom'
 import ActiveSelect from '../common/ActiveSelect'
 import * as userActions from '../../actions/userActions'
-import * as bossActions from '../../actions/bossActions'
+import * as genuisActions from '../../actions/genuisActions'
 import '../../App.css';
 
 @connect(state => ({
-	boss: state.boss,
+	genuis: state.genuis,
 	pathTo: state.user.pathTo
 }), dispatch => ({
 	userActions: bindActionCreators(userActions, dispatch),
-	bossActions: bindActionCreators(bossActions, dispatch)
+	genuisActions: bindActionCreators(genuisActions, dispatch)
 }))
-export default class Boss extends Component {
+export default class Genuis extends Component {
     constructor() {
         super()
     }
 	handleChage = (key, value) => {
-		this.props.bossActions.bossChange(key, value)
+		this.props.userActions.publickChange(key, value)
 	}
 	select = (v) => {
         // console.log(v)
     }
 	handleSubmit = () => {
-        this.props.userActions.update(this.props.boss)
+        this.props.userActions.update(this.props.publick)
     }
   render() {
       const path = this.props.location.pathname
       console.log('path ===> ', path)
       const {
 		  title,
-		  company,
-		  money,
 		  desc
-      } = this.props.boss
+      } = this.props.genuis
 	  if (this.props.pathTo) {
 		  return <Redirect to={this.props.pathTo} />
 	  }
     return (
       <div className="App">
-          <NavBar mode="dark">招聘者</NavBar>
+          <NavBar mode="dark">应聘者</NavBar>
           <ActiveSelect select={this.select} />
           {/*<WingBlank>*/}
               <List>
@@ -52,29 +50,9 @@ export default class Boss extends Component {
                       value={title}
                       onChange={(e) => this.handleChage('title', e)}
                       moneyKeyboardAlign="left"
-                  >招聘职位</InputItem>
-                  <InputItem
-                      // type='money'
-                      clear
-                      value={company}
-                      onChange={(e) => this.handleChage('company', e)}
-                      moneyKeyboardAlign="left"
-                  >公司名称</InputItem>
-                  {/*<InputItem*/}
-                      {/*// type='money'*/}
-                      {/*clear*/}
-                      {/*onChange={(e) => this.handleChage('year', e)}*/}
-                      {/*moneyKeyboardAlign="left"*/}
-                  {/*>工作年限</InputItem>*/}
-                  <InputItem
-                      // type='money'
-                      clear
-                      value={money}
-                      onChange={(e) => this.handleChage('money', e)}
-                      moneyKeyboardAlign="left"
-                  >薪资范围</InputItem>
+                  >求职职位</InputItem>
                   <TextareaItem
-                      title="职位要求"
+                      title="个人简介"
                       rows={3}
                       value={desc}
                       placeholder="auto focus in Alipay client"

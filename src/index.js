@@ -6,6 +6,7 @@ import './index.css';
 import Login from './containers/login'
 import Register from './containers/register'
 import Boss from './containers/boss'
+import Genuis from './containers/genuis'
 import LoginRoute from './components/logoRoute'
 import './config'
 import {store} from './store/createStore'
@@ -19,6 +20,7 @@ ReactDOM.render(
 				<LoginRoute />
 				<Switch>
 					<Route path='/bossinfo' component={Boss} ></Route>
+					<Route path='/geniusinfo' component={Genuis} ></Route>
 					<Route path='/login' component={Login} ></Route>
 					<Route path='/register' component={Register} ></Route>
 				</Switch>

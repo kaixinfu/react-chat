@@ -1,12 +1,10 @@
 import * as types from '../constants/ActionTypes'
-import {pathTo} from '../utils'
 
 const initialState = {
 	title: '',
 	company: '',
 	money: '',
 	desc: '',
-	pathTo: ''
 }
 
 export default function (state = initialState, action) {
@@ -17,7 +15,7 @@ export default function (state = initialState, action) {
 	} = action
 	
 	switch (type) {
-		case types.PUBLICK_CHANGE:
+		case types.BOSS_CHANGE:
 			const {
 				key,
 				value
@@ -25,11 +23,6 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				[key]: value
-			}
-		case types.AUTH_SUCCESS:
-			return {
-				...state,
-				pathTo: pathTo({...payload, avatar: true}),
 			}
 		default:
 			return state
