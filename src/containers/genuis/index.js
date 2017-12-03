@@ -31,7 +31,7 @@ export default class Genuis extends Component {
         // console.log(v)
     }
 	handleSubmit = () => {
-        this.props.userActions.update(this.props.publick)
+        this.props.userActions.update(this.props.genuis)
     }
   render() {
       const path = this.props.location.pathname

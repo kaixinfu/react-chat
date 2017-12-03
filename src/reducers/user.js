@@ -3,7 +3,10 @@ import {pathTo} from '../utils'
 
 const initialState = {
 	avatar: false,
-	pathTo: ''
+	pathTo: '',
+	info: {
+	
+	}
 }
 
 export default function (state = initialState, action) {
@@ -19,6 +22,18 @@ export default function (state = initialState, action) {
 				...state,
 				avatar: true,
 				pathTo: pathTo({...payload, avatar: true}),
+				info: {
+					...state.info,
+					...payload
+				}
+			}
+		case types.FETCH_USR_SUCCESS:
+			return {
+				...state,
+				info: {
+					...state.info,
+					...payload
+				}
 			}
 		default:
 			return state

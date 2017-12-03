@@ -4,7 +4,6 @@ import login from './login'
 import boss from './boss'
 import genuis from './genuis'
 import user from './user'
-import users from './users'
 import register from './register'
 
 export default combineReducers({
@@ -12,6 +11,5 @@ export default combineReducers({
 	boss,
 	genuis,
 	user,
-	users,
 	register
 })

@@ -23,3 +23,5 @@ export const BOSS_CHANGE = 'BOSS_CHANGE';
 export const GENUIS_CHANGE = 'GENUIS_CHANGE';
 //用户更新
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+//获取用户信息
+export const FETCH_USR_SUCCESS = 'FETCH_USR_SUCCESS'

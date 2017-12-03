@@ -60,7 +60,10 @@ export default function (state = initialState, action) {
 				...state,
 				info: {
 					...state.info,
-					...payload
+					user: {
+						...state.info.user,
+						...payload
+					}
 				}
 			}
 		case types.FETCH_USERINFO_FAILURE:

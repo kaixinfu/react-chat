@@ -12,26 +12,25 @@ function errorMessage(message) {
 function info(error) {
 	Toast.info(error, 1);
 }
-export const fetchUserInfo = () => dispatch => {
-	dispatch({
-		type: types.FETCH_USERINFO_REQUEST
-	})
-	return axios({
-		method: 'GET',
-		url: '/user/info',
-	}).then(res => {
-		console.log('res', res)
-		dispatch({
-			type: types.FETCH_USERINFO_SUCCESS,
-			payload: res.data
-		})
-	}).catch(error => {
-		dispatch({
-			type: types.FETCH_USERINFO_FAILURE,
-			payload: error
-		})
-	})
-}
+// export const fetchUserInfo = () => dispatch => {
+// 	dispatch({
+// 		type: types.FETCH_USERINFO_REQUEST
+// 	})
+// 	return axios({
+// 		method: 'GET',
+// 		url: '/user/info',
+// 	}).then(res => {
+// 		dispatch({
+// 			type: types.FETCH_USERINFO_SUCCESS,
+// 			payload: res.data
+// 		})
+// 	}).catch(error => {
+// 		dispatch({
+// 			type: types.FETCH_USERINFO_FAILURE,
+// 			payload: error
+// 		})
+// 	})
+// }
 //获取登录信息
 export const fetchLogin = callback => dispatch => {
 	dispatch({
@@ -49,9 +48,13 @@ export const fetchLogin = callback => dispatch => {
 		if (res && res.status == 200) {
 			res.text().then(data => {
 				const info = JSON.parse(data)
+				// dispatch({
+				// 	type: types.FETCH_USERINFO_SUCCESS,
+				// 	payload: info.data
+				// })
 				dispatch({
-					type: types.FETCH_USERINFO_SUCCESS,
-					payload: info
+					type: types.FETCH_USR_SUCCESS,
+					payload: info.data
 				})
 				if (info.code == 0) {
 					dispatch({
