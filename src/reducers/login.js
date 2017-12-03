@@ -39,6 +39,10 @@ export default function (state = initialState, action) {
 				info: {
 					...state.info,
 					pathTo: pathTo(payload),
+					user: {
+						...state.info.user,
+						...payload
+					}
 				}
 			}
 		case types.LOGIN_FIRST:

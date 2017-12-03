@@ -105,7 +105,6 @@ export const postLogin = loginInfo => dispatch => {
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
-			'credentials' : 'include'
 		},
 		body: JSON.stringify(loginInfo)
 	}).then(res => {

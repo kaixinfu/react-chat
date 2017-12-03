@@ -13,7 +13,7 @@ import '../../App.css';
 
 @connect(
 	state => (
-		{user: state.user.info || []}),
+		{user: state.login.info.user || []}),
 	dispatch => (
 		{userActions: bindActionCreators(userActions, dispatch)})
 )
