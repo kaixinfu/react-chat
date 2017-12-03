@@ -15,7 +15,7 @@ export default function (state = initialState, action) {
 	} = action
 	
 	switch (type) {
-		case types.BOSS_CHANGE:
+		case types.LEADER_CHANGE:
 			const {
 				key,
 				value

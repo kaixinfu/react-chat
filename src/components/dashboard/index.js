@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import {Switch, Route} from 'react-router-dom'
 import { NavBar, Icon } from 'antd-mobile';
 import Leader from '../leader'
 import Genuis from '../genuis'
@@ -29,9 +30,9 @@ export default class Dashboard extends Component {
 		} = this.props
 		const navList = [
 			{
-				path: '/boss',
+				path: '/leader',
 				text: '应聘者',
-				icon: 'boss',
+				icon: 'leader',
 				title: '应聘者列表',
 				component: Leader,
 				hide: user.type == 'genuis'
@@ -42,7 +43,7 @@ export default class Dashboard extends Component {
 				icon: 'job',
 				title: '公司列表',
 				component: Genuis,
-				hide: user.type == 'boss'
+				hide: user.type == 'leader'
 			},
 			{
 				path: '/msg',
@@ -62,6 +63,7 @@ export default class Dashboard extends Component {
 		return (
 			<div className="App">
 				<NavBar
+					className='fixd-header'
 					mode="dard"
 					icon={<Icon type="left" />}
 					onLeftClick={() => console.log('onLeftClick')}
@@ -70,6 +72,11 @@ export default class Dashboard extends Component {
 						<Icon key="1" type="ellipsis" />,
 					]}
 				>{navList.find(v => v.path == pathname).title}</NavBar>
+				<div style={{marginTop: 40}}>
+					<Switch>
+						{navList.map((item, key) => <Route key={key} path={item.path} component={item.component}></Route>)}
+					</Switch>
+				</div>
 				<h1 className="App-title">Welcome to dashboard!</h1>
 				<NavLinkBar data={navList} />
 			</div>

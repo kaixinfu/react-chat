@@ -6,7 +6,7 @@ import '../../App.css';
 
 @connect(
 	state => (
-		{list: state.users.list || []}),
+		{list: state || []}),
 	dispatch => (
 		{userActions: bindActionCreators(userActions, dispatch)})
 )

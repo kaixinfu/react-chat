@@ -35,7 +35,6 @@ export default class Genuis extends Component {
     }
   render() {
       const path = this.props.location.pathname
-      console.log('path ===> ', path)
       const {
 		  title,
 		  desc

@@ -19,7 +19,7 @@ export const LOGOUT = 'LOGOUT';
 export const ADD_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
 //用户公开信息
-export const BOSS_CHANGE = 'BOSS_CHANGE';
+export const LEADER_CHANGE = 'LEADER_CHANGE';
 export const GENUIS_CHANGE = 'GENUIS_CHANGE';
 //用户更新
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';

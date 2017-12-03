@@ -6,42 +6,41 @@ import { NavBar, Icon , WingBlank, List, InputItem, WhiteSpace, Button, Textarea
 import {Redirect} from 'react-router-dom'
 import ActiveSelect from '../common/ActiveSelect'
 import * as userActions from '../../actions/userActions'
-import * as bossActions from '../../actions/bossActions'
+import * as leaderActions from '../../actions/leaderActions'
 import '../../App.css';
 
 @connect(state => ({
-	boss: state.boss,
+	leader: state.leader,
 	pathTo: state.user.pathTo
 }), dispatch => ({
 	userActions: bindActionCreators(userActions, dispatch),
-	bossActions: bindActionCreators(bossActions, dispatch)
+	leaderActions: bindActionCreators(leaderActions, dispatch)
 }))
-export default class Boss extends Component {
+export default class Leader extends Component {
 	static PropTypes = {
 		userActions: PropTypes.object.isRequired,
-		bossActions: PropTypes.object.isRequired
+		leaderActions: PropTypes.object.isRequired
 	}
     constructor() {
         super()
     }
 	handleChage = (key, value) => {
-		this.props.bossActions.bossChange(key, value)
+		this.props.leaderActions.leaderChange(key, value)
 	}
 	select = (v) => {
         // console.log(v)
     }
 	handleSubmit = () => {
-        this.props.userActions.update(this.props.boss)
+        this.props.userActions.update(this.props.leader)
     }
   render() {
       const path = this.props.location.pathname
-      console.log('path ===> ', path)
       const {
 		  title,
 		  company,
 		  money,
 		  desc
-      } = this.props.boss
+      } = this.props.leader
 	  if (this.props.pathTo) {
 		  return <Redirect to={this.props.pathTo} />
 	  }

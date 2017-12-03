@@ -26,8 +26,8 @@ export default class Register extends Component {
 		super()
 		this.state = {
 			data: [
-				{ value: 'boss', label: 'boss' },
-				{ value: 'genuis', label: '牛人' },
+				{ value: 'leader', label: 'leader' },
+				{ value: 'genuis', label: '求职' },
 			]
 		};
 	}
