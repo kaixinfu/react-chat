@@ -25,7 +25,7 @@ export default class Leader extends Component {
 				<WhiteSpace size="lg" />
 				{
 					list.map((item, key) => (
-						item.avatar ? <Card key={key}>
+						item.avatar ? <Card key={item.avatar}>
 							<Card.Header
 								title={item.user}
 								thumb={require(`../../static/img/${item.avatar}.jpg`)}
@@ -33,7 +33,7 @@ export default class Leader extends Component {
 								extra={<span>{item.title}</span>}
 							/>
 							<Card.Body>
-								{item.desc.split('\n').map((v, k) => <div key={key}>{v}</div>)}
+								{item.desc.split('\n').map((v, k) => <div key={k}>{v}</div>)}
 							</Card.Body>
 						</Card> : null
 					))
