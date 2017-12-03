@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { Card, WingBlank, WhiteSpace } from 'antd-mobile';
 import {bindActionCreators} from 'redux'
-import * as leaderActions from '../../actions/leaderActions'
+import * as chatActions from '../../actions/chatActions'
 import '../../App.css';
 
 @connect(
 	state => (
-		{list: state.genuis.list || []}),
+		{list: state.chatUsers.list || []}),
 	dispatch => (
-		{leaderActions: bindActionCreators(leaderActions, dispatch)})
+		{chatActions: bindActionCreators(chatActions, dispatch)})
 )
 export default class Leader extends Component {
 	constructor() {
 		super()
 	}
 	componentDidMount() {
-		this.props.leaderActions.fetchGenuis()
+		this.props.chatActions.fetchUsers('genuis')
 	}
 	render() {
 		const {list} = this.props
+		console.log(list)
 		return (
 			<WingBlank size="lg">
 				<WhiteSpace size="lg" />
