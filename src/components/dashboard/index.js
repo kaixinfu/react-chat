@@ -31,17 +31,17 @@ export default class Dashboard extends Component {
 		const navList = [
 			{
 				path: '/leader',
-				text: '应聘者',
+				text: 'genuis',
 				icon: 'leader',
-				title: '应聘者列表',
+				title: 'genuis列表',
 				component: Leader,
 				hide: user.type == 'genuis'
 			},
 			{
 				path: '/genuis',
-				text: '招聘者',
-				icon: 'job',
-				title: '公司列表',
+				text: 'leader',
+				icon: 'genuis',
+				title: 'leader列表',
 				component: Genuis,
 				hide: user.type == 'leader'
 			},

@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import { Card, WingBlank, WhiteSpace } from 'antd-mobile';
 import {bindActionCreators} from 'redux'
-import * as userActions from '../../actions/registerActions'
+import * as chatActions from '../../actions/chatActions'
+import UserCard from '../common/UserCard'
 import '../../App.css';
 
 @connect(
 	state => (
-		{list: state || []}),
+		{list: state.chatUsers.list || []}),
 	dispatch => (
-		{userActions: bindActionCreators(userActions, dispatch)})
+		{chatActions: bindActionCreators(chatActions, dispatch)})
 )
 export default class Genuis extends Component {
 	constructor() {
 		super()
 	}
+	componentDidMount() {
+		this.props.chatActions.fetchUsers('leader')
+	}
 	render() {
+		const {list} = this.props
 		return (
-			<div className="App">
-				<h1 className="App-title">Welcome to Genuis!</h1>
-			</div>
+			<UserCard list={list} />
 		);
 	}
 }
