@@ -27,9 +27,6 @@ export default class Leader extends Component {
 	handleChage = (key, value) => {
 		this.props.leaderActions.leaderChange(key, value)
 	}
-	select = (v) => {
-        // console.log(v)
-    }
 	handleSubmit = () => {
         this.props.userActions.update(this.props.leader)
     }
@@ -47,7 +44,7 @@ export default class Leader extends Component {
     return (
       <div className="App">
           <NavBar mode="dark">招聘者</NavBar>
-          <ActiveSelect select={this.select} />
+          <ActiveSelect select={this.handleChage} />
           {/*<WingBlank>*/}
               <List>
                   <InputItem

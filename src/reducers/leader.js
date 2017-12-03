@@ -1,6 +1,7 @@
 import * as types from '../constants/ActionTypes'
 
 const initialState = {
+	avatar: '',
 	title: '',
 	company: '',
 	money: '',

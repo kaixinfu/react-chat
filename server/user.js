@@ -22,8 +22,9 @@ Router.get('/info', function (req, res) {
 });
 
 Router.get('/list', function (req, res) {
-	User.find({}, function (error, doc) {
-		return res.json(doc)
+	const {type} = req.query
+	User.find({type}, function (error, doc) {
+		return res.json({code: 0, message: '请求成功', data: doc})
 	})
 });
 //删除信息

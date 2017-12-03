@@ -61,7 +61,7 @@ export default class Dashboard extends Component {
 			}
 		]
 		return (
-			<div className="App">
+			<div>
 				<NavBar
 					className='fixd-header'
 					mode="dard"
@@ -77,7 +77,6 @@ export default class Dashboard extends Component {
 						{navList.map((item, key) => <Route key={key} path={item.path} component={item.component}></Route>)}
 					</Switch>
 				</div>
-				<h1 className="App-title">Welcome to dashboard!</h1>
 				<NavLinkBar data={navList} />
 			</div>
 		);

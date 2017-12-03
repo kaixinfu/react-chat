@@ -1,8 +1,10 @@
 import * as types from '../constants/ActionTypes'
 
 const initialState = {
+	avatar: '',
 	title: '',
 	desc: '',
+	list: []
 }
 
 export default function (state = initialState, action) {
@@ -21,6 +23,11 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				[key]: value
+			}
+		case types.FETCH_GENUIS_SUCCESS:
+			return {
+				...state,
+				list: payload
 			}
 		default:
 			return state

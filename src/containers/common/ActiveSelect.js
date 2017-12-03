@@ -26,7 +26,7 @@ export default class ActiveSelect extends Component {
     }
     select = (v) => {
         this.setState({text: v.icon})
-		this.props.select(v.text)
+		this.props.select('avatar', v.text)
     }
   render() {
       const renderActive = this.state.text ? <div>

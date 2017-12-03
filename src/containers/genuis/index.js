@@ -27,9 +27,6 @@ export default class Genuis extends Component {
 	handleChage = (key, value) => {
 		this.props.genuisActions.genuisChange(key, value)
 	}
-	select = (v) => {
-        // console.log(v)
-    }
 	handleSubmit = () => {
         this.props.userActions.update(this.props.genuis)
     }
@@ -45,7 +42,7 @@ export default class Genuis extends Component {
     return (
       <div className="App">
           <NavBar mode="dark">应聘者</NavBar>
-          <ActiveSelect select={this.select} />
+          <ActiveSelect select={this.handleChage} />
           {/*<WingBlank>*/}
               <List>
                   <InputItem

@@ -27,7 +27,6 @@ export const update = data => dispatch => {
 	}).then(req => {
 		if (req.code == 0) {
 			info(req.message)
-			console.log('req.data ====> ', req.data)
 			dispatch({
 				type: types.AUTH_SUCCESS,
 				payload: req.data
