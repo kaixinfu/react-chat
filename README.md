@@ -64,7 +64,7 @@ $ sudo mongod
 ```
 
 ```sh
-$ nodemon server/server.js
+$ npm run node
 ```
 ```sh
 $ npm start
