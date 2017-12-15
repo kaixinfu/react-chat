@@ -33,21 +33,6 @@ $ cd react-chat
 $ npm install
 ```
 
-## To Run Project
-```sh
-$ react-native run-ios
-```
-or
-
-```sh
-$ react-native run-android
-```
-
-## Preview
-<img src="http://liukaixin.cn/react-chat/git-hub/login.png" width="300">  <img src="http://liukaixin.cn/react-chat/git-hub/register.png" width="300">
-<img src="http://liukaixin.cn/react-chat/git-hub/leader-register.png" width="300">  <img src="http://liukaixin.cn/react-chat/git-hub/genuis-register.png" width="300">
-<img src="http://liukaixin.cn/react-chat/git-hub/leader-view.png" width="300"> <img src="http://liukaixin.cn/react-chat/git-hub/genuis-view.png" width="300">
-
 ## mongodb
 
 ```sh
@@ -69,3 +54,8 @@ $ npm run node
 ```sh
 $ npm start
 ```
+
+## Preview
+<img src="http://liukaixin.cn/react-chat/git-hub/login.png" width="300">  <img src="http://liukaixin.cn/react-chat/git-hub/register.png" width="300">
+<img src="http://liukaixin.cn/react-chat/git-hub/leader-register.png" width="300">  <img src="http://liukaixin.cn/react-chat/git-hub/genuis-register.png" width="300">
+<img src="http://liukaixin.cn/react-chat/git-hub/leader-view.png" width="300"> <img src="http://liukaixin.cn/react-chat/git-hub/genuis-view.png" width="300">
