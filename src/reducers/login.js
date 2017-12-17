@@ -5,10 +5,7 @@ const initialState = {
 	info: {
 		code: '',
 		pathTo: '',
-		user: {
-			user: '',
-			type: ''
-		}
+		user: {}
 	}
 }
 
