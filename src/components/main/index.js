@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import { Result, Icon, WhiteSpace, List, Button } from 'antd-mobile';
 import {bindActionCreators} from 'redux'
 import _ from 'lodash'
+import browerCookies from 'browser-cookies'
 import * as userActions from '../../actions/registerActions'
-import '../../App.css';
+// import '../../App.css';
 const Item = List.Item;
 const Brief = Item.Brief;
 
@@ -18,8 +19,9 @@ export default class Main extends Component {
 	constructor() {
 		super()
 	}
-	handleSubmit = () => {
-	
+	onLoginout = () => {
+		console.log('....')
+		browerCookies.erase('user_id')
 	}
 	render() {
 		const {user} = this.props
@@ -43,7 +45,7 @@ export default class Main extends Component {
 					</Item>
 				</List>
 				<WhiteSpace />
-				<Button onClick={this.handleSubmit} type="primary">退出登录</Button>
+				<Button onClick={this.onLoginout} type="primary">退出登录</Button>
 			</div>
 		) : null
 	}

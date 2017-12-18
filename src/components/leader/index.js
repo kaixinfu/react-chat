@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import { Card, WingBlank, WhiteSpace } from 'antd-mobile';
+import { Card, WingBlank, WhiteSpace, Button } from 'antd-mobile';
 import {bindActionCreators} from 'redux'
 import * as chatActions from '../../actions/chatActions'
 import UserCard from '../common/UserCard'
@@ -22,7 +22,10 @@ export default class Leader extends Component {
 	render() {
 		const {list} = this.props
 		return (
-			<UserCard list={list} />
+			<div>
+				<Button onClick={() => console.log('99999999999')}>default</Button><WhiteSpace />
+				<UserCard list={list} />
+			</div>
 		);
 	}
 }

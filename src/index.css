@@ -7,11 +7,14 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 99;
+  height: 50px !important;
 }
 .fixd-header.am-navbar {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 99;
 }
 .page-content {
   padding: 45px 5px ;

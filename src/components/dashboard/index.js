@@ -9,7 +9,7 @@ import Msg from '../msg'
 import Main from '../main'
 import NavLinkBar from '../navLinkBar'
 import * as userActions from '../../actions/registerActions'
-import '../../App.css';
+// import '../../App.css';
 
 @connect(
 	state => (
@@ -65,14 +65,8 @@ export default class Dashboard extends Component {
 				<NavBar
 					className='fixd-header'
 					mode="dard"
-					icon={<Icon type="left" />}
-					onLeftClick={() => console.log('onLeftClick')}
-					rightContent={[
-						<Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-						<Icon key="1" type="ellipsis" />,
-					]}
 				>{navList.find(v => v.path == pathname).title}</NavBar>
-				<div style={{marginTop: 40}}>
+				<div style={{ marginTop: 40}}>
 					<Switch>
 						{navList.map((item, key) => <Route key={key} path={item.path} component={item.component}></Route>)}
 					</Switch>
