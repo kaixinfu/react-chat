@@ -37,3 +37,9 @@ export const update = data => dispatch => {
 		}
 	})
 }
+
+export const logoutClean = () => dispatch => {
+	dispatch({
+		type: types.USERLOGOUT
+	})
+}

@@ -10,8 +10,8 @@ import Logo from '../../components/logo'
 
 @connect(
 	state => ({
-		user: state.login.info.user || [],
-		pathTo: state.login.info.pathTo || ''
+		user: state.login.user || [],
+		pathTo: state.login.pathTo || ''
 	}),
 	dispatch => (
 		{loginActions: bindActionCreators(loginActions, dispatch)})
@@ -38,7 +38,7 @@ export default class Login extends Component {
 			user,
 			password
 		} = this.props.user
-		if (this.props.pathTo) {
+		if (this.props.pathTo && this.props.pathTo != '/login' ) {
 			return <Redirect to={this.props.pathTo} />
 		}
 		return (

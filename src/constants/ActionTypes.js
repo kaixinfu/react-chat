@@ -6,6 +6,8 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT = 'LOGOUT';
+//退出登录
+export const USERLOGOUT = 'USERLOGOUT'
 //获取用户信息
 export const FETCH_USERINFO_REQUEST = 'FETCH_USERINFO_REQUEST';
 export const FETCH_USERINFO_SUCCESS = 'FETCH_USERINFO_SUCCESS';

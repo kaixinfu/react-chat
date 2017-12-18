@@ -13,7 +13,7 @@ import * as userActions from '../../actions/registerActions'
 
 @connect(
 	state => (
-		{user: state.login.info.user || []}),
+		{user: state.login.user || []}),
 	dispatch => (
 		{userActions: bindActionCreators(userActions, dispatch)})
 )

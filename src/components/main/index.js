@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import { Result, Icon, WhiteSpace, List, Button } from 'antd-mobile';
+import { Result, Icon, WhiteSpace, List, Button, Modal } from 'antd-mobile';
 import {bindActionCreators} from 'redux'
 import _ from 'lodash'
 import browerCookies from 'browser-cookies'
-import * as userActions from '../../actions/registerActions'
+import { Redirect } from 'react-router-dom'
+import * as userActions from '../../actions/userActions'
 // import '../../App.css';
 const Item = List.Item;
 const Brief = Item.Brief;
+const alert = Modal.alert;
 
 @connect(
 	state => (
-		{user: state.login.info.user || []}),
+		{
+			user: state.login.user || [],
+			pathTo: state.login.pathTo || ''
+		}),
 	dispatch => (
 		{userActions: bindActionCreators(userActions, dispatch)})
 )
@@ -19,9 +24,16 @@ export default class Main extends Component {
 	constructor() {
 		super()
 	}
-	onLoginout = () => {
-		console.log('....')
+	goBrowerCookies = () => {
 		browerCookies.erase('user_id')
+		// window.location.href = window.location.href //刷新页面
+		this.props.userActions.logoutClean()
+	}
+	onLoginout = () => {
+		alert('注销', '确认退出登录？', [
+			{ text: '取消', onPress: () => console.log('cancel') },
+			{ text: '确认', onPress: () => this.goBrowerCookies() },
+		])
 	}
 	render() {
 		const {user} = this.props
@@ -47,6 +59,6 @@ export default class Main extends Component {
 				<WhiteSpace />
 				<Button onClick={this.onLoginout} type="primary">退出登录</Button>
 			</div>
-		) : null
+		) : <Redirect to={this.props.pathTo} />
 	}
 }

@@ -2,10 +2,10 @@ import * as types from '../constants/ActionTypes'
 import {pathTo} from '../utils'
 
 const initialState = {
-	info: {
-		code: '',
-		pathTo: '',
-		user: {}
+	code: '',
+	pathTo: '',
+	user: {
+	
 	}
 }
 
@@ -22,34 +22,25 @@ export default function (state = initialState, action) {
 			} = payload
 			return {
 				...state,
-				info: {
-					...state.info,
-					user:{
-						...state.info.user,
-						[key]: value
-					}
+				user:{
+					...state.user,
+					[key]: value
 				}
 			}
 		case types.LOGIN_SUCCESS:
 			return {
 				...state,
-				info: {
-					...state.info,
-					pathTo: pathTo(payload),
-					user: {
-						...state.info.user,
-						...payload
-					}
+				pathTo: pathTo(payload),
+				user: {
+					...state.user,
+					...payload
 				}
 			}
 		case types.LOGIN_FIRST:
 			return {
 				...state,
-				info: {
-					...state.info,
-					user: {
-						...payload
-					}
+				user: {
+					...payload
 				}
 			}
 		case types.FETCH_USERINFO_REQUEST:
@@ -59,12 +50,9 @@ export default function (state = initialState, action) {
 		case types.FETCH_USERINFO_SUCCESS:
 			return {
 				...state,
-				info: {
-					...state.info,
-					user: {
-						...state.info.user,
-						...payload
-					}
+				user: {
+					...state.user,
+					...payload
 				}
 			}
 		case types.FETCH_USERINFO_FAILURE:
@@ -74,10 +62,12 @@ export default function (state = initialState, action) {
 		case types.LOGOUT:
 			return {
 				...state,
-				info: {
-					...state.info,
-					state: false
-				}
+				state: false
+			}
+		case types.USERLOGOUT:
+			return {
+				...initialState,
+				pathTo: '/login',
 			}
 		default:
 			return state

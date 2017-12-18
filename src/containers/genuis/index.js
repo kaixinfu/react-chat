@@ -31,7 +31,6 @@ export default class Genuis extends Component {
         this.props.userActions.update(this.props.genuis)
     }
   render() {
-      const path = this.props.location.pathname
       const {
 		  title,
 		  desc

@@ -23,7 +23,6 @@ export default class Leader extends Component {
 		const {list} = this.props
 		return (
 			<div>
-				<Button onClick={() => console.log('99999999999')}>default</Button><WhiteSpace />
 				<UserCard list={list} />
 			</div>
 		);

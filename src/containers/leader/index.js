@@ -31,7 +31,6 @@ export default class Leader extends Component {
         this.props.userActions.update(this.props.leader)
     }
   render() {
-      const path = this.props.location.pathname
       const {
 		  title,
 		  company,
