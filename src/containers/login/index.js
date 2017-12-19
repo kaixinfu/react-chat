@@ -7,6 +7,7 @@ import {Redirect} from 'react-router-dom'
 import * as loginActions from '../../actions/loginActions'
 import '../../App.css';
 import Logo from '../../components/logo'
+import appForm from '../../components/app-form'
 
 @connect(
 	state => ({
@@ -16,6 +17,7 @@ import Logo from '../../components/logo'
 	dispatch => (
 		{loginActions: bindActionCreators(loginActions, dispatch)})
 )
+// @appForm
 export default class Login extends Component {
 	static PropTypes = {
 		loginActions: PropTypes.object.isRequired
