@@ -28,7 +28,7 @@ Router.get('/list', function (req, res) {
 	})
 });
 //删除信息
-// User.remove({'user': 't'}, function (error, doc) {
+// User.remove({'user': '天天'}, function (error, doc) {
 // 	// return res.json(doc)
 // })
 //注册信息

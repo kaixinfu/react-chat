@@ -9,6 +9,7 @@ import Leader from './containers/leader'
 import Genuis from './containers/genuis'
 import Dashboard from './components/dashboard'
 import LoginRoute from './components/logoRoute'
+import Chat from './components/chat'
 import './config'
 import {store} from './store/createStore'
 
@@ -24,6 +25,7 @@ ReactDOM.render(
 					<Route path='/genuisinfo' component={Genuis} ></Route>
 					<Route path='/login' component={Login} ></Route>
 					<Route path='/register' component={Register} ></Route>
+					<Route path='/chat/:user' component={Chat} ></Route>
 					<Route component={Dashboard}></Route>
 				</Switch>
 			</div>

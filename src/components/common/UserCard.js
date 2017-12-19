@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import { Card, WingBlank, WhiteSpace } from 'antd-mobile';
 import PropTypes from 'prop-types'
 import '../../App.css';
+import { withRouter } from 'react-router-dom'
 
+@withRouter
 export default class Genuis extends Component {
 	static PropTypes = {
 		list: PropTypes.array.isRequired
 	}
 	constructor() {
 		super()
+	}
+	handleClick = (v) => {
+		console.log('v', v)
+		this.props.history.push(`/chat/${v.user}`)
 	}
 	render() {
 		const {list} = this.props
@@ -17,7 +23,7 @@ export default class Genuis extends Component {
 				<WhiteSpace size="lg" />
 				{
 					list.map((item, key) => (
-						item.avatar ? <Card key={item.avatar}>
+						item.avatar ? <Card onClick={() => this.handleClick(item)} key={item.avatar}>
 							<Card.Header
 								title={item.user}
 								thumb={require(`../../static/img/${item.avatar}.jpg`)}
