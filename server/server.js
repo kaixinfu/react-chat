@@ -7,7 +7,10 @@ const app = express();
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 io.on('connection', function (socket) {
-	console.log('chat.connect >>>>>>>>>>> socket')
+    socket.on('sendmsg', function (data) {
+		console.log('sendmsg ===>>>', data)
+		io.emit('receivemsg', data)
+    })
 })
 const userRouter = require('./user');
 
