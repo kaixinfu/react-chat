@@ -44,7 +44,7 @@ export const getMsgs = () => dispatch => {
 	}).then(res => {
 		dispatch({
 			type: types.MSG_LIST,
-			payload: res.data.map(item => item.content)
+			payload: res.data
 		})
 	})
 }
@@ -57,7 +57,7 @@ export const receiveMsg = () => dispatch => {
 	socket.on('receivemsg', data => {
         dispatch({
 			type: types.MSG_RECEIVE,
-			payload: data.content
+			payload: data
 		})
     })
 }

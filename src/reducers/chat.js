@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes'
 
 const initialState = {
-	mags: [],
+	msgs: [],
 	unread: 0
 }
 
@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
 		case types.MSG_LIST:
 			return {
 				...state,
-                mags: [
+                msgs: [
 					...payload
 				],
                 unread: payload.filter(item => !item.readed).length
@@ -24,15 +24,16 @@ export default function (state = initialState, action) {
         case types.MSG_RECEIVE:
             return {
                 ...state,
-                mags: [
-                    ...state.mags,
+                msgs: [
+                    ...state.msgs,
                     payload
-                ]
+                ],
+                unread: state.unread + 1
             }
         case types.MSG_READED:
             return {
                 ...state,
-                mags: [
+                msgs: [
                     ...payload
                 ]
             }
