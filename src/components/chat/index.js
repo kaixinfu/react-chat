@@ -10,8 +10,7 @@ import '../../App.css';
 const socket = io('ws://localhost:9000')
 
 @connect(
-	state => (
-		{list: state.chatUsers.list || []}),
+	state => state || {},
 	dispatch => (
 		{chatActions: bindActionCreators(chatActions, dispatch)})
 )
@@ -25,11 +24,12 @@ export default class Chat extends Component {
 		}
 	}
 	componentDidMount() {
-        socket.on('receivemsg', data => {
-			this.setState({
-                msg: [...this.state.msg, data.text]
-			})
-        })
+		this.props.chatActions.getMsgs()
+        // socket.on('receivemsg', data => {
+			// this.setState({
+        //         msg: [...this.state.msg, data.text]
+			// })
+        // })
 	}
     handleSubmite = () => {
         socket.emit('sendmsg', {text: this.state.text})

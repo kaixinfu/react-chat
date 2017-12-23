@@ -3,6 +3,7 @@ const utils = require('utility');
 const Router = express.Router();
 const model = require('./model');
 const User = model.getModel('user');
+const Chat = model.getModel('chat');
 const filter = {password: 0, __v: 0}
 
 Router.get('/info', function (req, res) {
@@ -27,6 +28,15 @@ Router.get('/list', function (req, res) {
 		return res.json({code: 0, message: '请求成功', data: doc})
 	})
 });
+Router.get('/msgs', function (req, res) {
+	const user = req.cookies.user
+    // '$or': [{'from': user, 'to': user}]
+	Chat.find({}, function (error, doc) {
+		if (!error) {
+			return res.json({code: 0, message: '请求成功', data: doc})
+		}
+    })
+})
 //删除信息
 // User.remove({'user': '天天'}, function (error, doc) {
 // 	// return res.json(doc)

@@ -28,3 +28,21 @@ export const fetchUsers = type => dispatch => {
 		})
 	})
 }
+
+export const getMsgs = () => dispatch => {
+	return fetch('/user/msgs', {
+		method: 'GET',
+        'credentials' : 'include',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+	}).then(res => {
+		return res.json()
+	}).then(res => {
+		dispatch({
+			type: types.MSG_LIST,
+			payload: res.data
+		})
+	})
+}

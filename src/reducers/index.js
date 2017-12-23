@@ -6,12 +6,14 @@ import genuis from './genuis'
 import user from './user'
 import chatUsers from './chatUsers'
 import register from './register'
+import chat from './chat'
 
 export default combineReducers({
-	login,
+	login,//登录
 	leader,
 	genuis,
 	user,
 	chatUsers,
-	register
+	register,
+    chat,//聊天消息
 })

@@ -36,3 +36,9 @@ export const FETCH_GENUIS_SUCCESS = 'FETCH_GENUIS_SUCCESS'
 export const FETCH_LEADER_SUCCESS = 'FETCH_LEADER_SUCCESS'
 //获取聊天列表
 export const FETCH_CHATUSER_SUCCESS = 'FETCH_CHATUSER_SUCCESS'
+//获取聊天消息列表
+export const MSG_LIST = 'MSG_LIST'
+//获取信息
+export const MSG_RECEIVE = 'MSG_RECEIVE'
+//消息已读
+export const MSG_READED = 'MSG_READED'
