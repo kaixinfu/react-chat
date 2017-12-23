@@ -25,14 +25,14 @@ export default class Chat extends Component {
 	}
 	componentDidMount() {
 		this.props.chatActions.getMsgs()
-        // socket.on('receivemsg', data => {
-			// this.setState({
-        //         msg: [...this.state.msg, data.text]
-			// })
-        // })
+		this.props.chatActions.receiveMsg()
 	}
     handleSubmite = () => {
-        socket.emit('sendmsg', {text: this.state.text})
+		this.props.chatActions.sendMsg({
+            from: this.props.login.user._id,
+            to: this.props.match.params.user,
+            content: this.state.text
+		})
 		this.setState({text: ''})
 	}
 	render() {

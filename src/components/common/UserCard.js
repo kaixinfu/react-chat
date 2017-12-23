@@ -14,7 +14,7 @@ export default class Genuis extends Component {
 	}
 	handleClick = (v) => {
 		console.log('v', v)
-		this.props.history.push(`/chat/${v.user}`)
+		this.props.history.push(`/chat/${v._id}`)
 	}
 	render() {
 		const {list} = this.props

@@ -6,10 +6,16 @@ const bodyParser = require('body-parser');
 const app = express();
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
+const model = require('./model');
+const Chat = model.getModel('chat');
 io.on('connection', function (socket) {
     socket.on('sendmsg', function (data) {
-		console.log('sendmsg ===>>>', data)
-		io.emit('receivemsg', data)
+		const { from , to, content } = data
+		const chat_id = [from, to].sort().join('_')
+		Chat.create({ chat_id, from , to, content}, function (error ,doc) {
+            io.emit('receivemsg', Object.assign({}, doc._doc ))
+        })
+		//
     })
 })
 const userRouter = require('./user');

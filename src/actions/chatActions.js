@@ -1,6 +1,8 @@
 import axios from 'axios'
 import * as types from '../constants/ActionTypes'
 import info from './common'
+import io from 'socket.io-client'
+const socket = io('ws://localhost:9000')
 //获取列表信息
 export const fetchUsers = type => dispatch => {
 	dispatch({
@@ -28,7 +30,7 @@ export const fetchUsers = type => dispatch => {
 		})
 	})
 }
-
+//获取聊天信息列表
 export const getMsgs = () => dispatch => {
 	return fetch('/user/msgs', {
 		method: 'GET',
@@ -42,7 +44,20 @@ export const getMsgs = () => dispatch => {
 	}).then(res => {
 		dispatch({
 			type: types.MSG_LIST,
-			payload: res.data
+			payload: res.data.map(item => item.content)
 		})
 	})
+}
+//发送聊天信息
+export const sendMsg = data => dispatch  => {
+    socket.emit('sendmsg', data)
+}
+//接收聊天信息
+export const receiveMsg = () => dispatch => {
+	socket.on('receivemsg', data => {
+        dispatch({
+			type: types.MSG_RECEIVE,
+			payload: data.content
+		})
+    })
 }

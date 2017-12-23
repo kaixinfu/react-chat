@@ -25,7 +25,8 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 mags: [
-                    ...payload
+                    ...state.mags,
+                    payload
                 ]
             }
         case types.MSG_READED:
