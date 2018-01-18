@@ -25,8 +25,8 @@ export default class Chat extends Component {
 		}
 	}
 	componentDidMount() {
-		this.props.chatActions.getMsgs()
-		this.props.chatActions.receiveMsg()
+		// this.props.chatActions.getMsgs()
+		// this.props.chatActions.receiveMsg()
 	}
     handleSubmite = () => {
 		this.props.chatActions.sendMsg({
@@ -45,7 +45,6 @@ export default class Chat extends Component {
 				<List></List>
 				{
 					msgs.map((item, key) => {
-						console.log('item.from == user', user)
 						return item.from == user ?
 							<List key={key}>
 								<Item>

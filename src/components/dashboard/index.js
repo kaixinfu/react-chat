@@ -8,18 +8,22 @@ import Genuis from '../genuis'
 import Msg from '../msg'
 import Main from '../main'
 import NavLinkBar from '../navLinkBar'
-import * as userActions from '../../actions/registerActions'
+import * as chatActions from '../../actions/chatActions'
 // import '../../App.css';
 
 @connect(
 	state => (
 		{user: state.login.user || []}),
 	dispatch => (
-		{userActions: bindActionCreators(userActions, dispatch)})
+		{chatActions: bindActionCreators(chatActions, dispatch)})
 )
 export default class Dashboard extends Component {
 	constructor() {
 		super()
+	}
+	componentDidMount() {
+        this.props.chatActions.getMsgs()
+        this.props.chatActions.receiveMsg()
 	}
 	render() {
 		const {
