@@ -2,6 +2,7 @@ import * as types from '../constants/ActionTypes'
 
 const initialState = {
 	msgs: [],
+    users: {},
 	unread: 0
 }
 
@@ -13,15 +14,20 @@ export default function (state = initialState, action) {
 	} = action
 	
 	switch (type) {
-		case types.MSG_LIST:
+        case types.MSG_LIST:
 			return {
 				...state,
                 msgs: [
-					...payload
+                    ...state.msgs,
+					...payload.msgs
 				],
-                unread: payload.filter(item => !item.readed).length
+                users: {
+                    ...payload.users
+                },
+                unread: payload.msgs.filter(item => !item.readed).length
 			}
         case types.MSG_RECEIVE:
+            console.log('payload', payload)
             return {
                 ...state,
                 msgs: [

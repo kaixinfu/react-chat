@@ -29,12 +29,17 @@ Router.get('/list', function (req, res) {
 	})
 });
 Router.get('/msgs', function (req, res) {
-	const user = req.cookies.user
-    // '$or': [{'from': user, 'to': user}]
-	Chat.find({}, function (error, doc) {
-		if (!error) {
-			return res.json({code: 0, message: '请求成功', data: doc})
-		}
+	const user = req.cookies.user_id
+	User.find({}, function (e, d) {
+		const users = {}
+		d.forEach(item => {
+            users[item._id] = {name: item.user, avatar: item.avatar}
+		})
+        Chat.find({'$or': [{'from': user}, {'to': user}]}, function (error, doc) {
+            if (!error) {
+                return res.json({code: 0, message: '请求成功', data: doc, users: users})
+            }
+        })
     })
 })
 //删除信息

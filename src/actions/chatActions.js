@@ -44,7 +44,7 @@ export const getMsgs = () => dispatch => {
 	}).then(res => {
 		dispatch({
 			type: types.MSG_LIST,
-			payload: res.data
+			payload: {msgs: res.data, users: res.users}
 		})
 	})
 }
@@ -55,6 +55,7 @@ export const sendMsg = data => dispatch  => {
 //接收聊天信息
 export const receiveMsg = () => dispatch => {
 	socket.on('receivemsg', data => {
+		console.log('data', data)
         dispatch({
 			type: types.MSG_RECEIVE,
 			payload: data
