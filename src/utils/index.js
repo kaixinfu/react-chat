@@ -5,3 +5,7 @@ export function pathTo({type, avatar}) {
 	if(!!!avatar)  url += 'info';
 	return url
 }
+
+export function getChatId(userId, chatId) {
+	return [userId, chatId].sort().join('_')
+}

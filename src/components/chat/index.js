@@ -8,6 +8,7 @@ import _ from 'lodash'
 import * as chatActions from '../../actions/chatActions'
 import UserCard from '../common/UserCard'
 import '../../App.css';
+import {getChatId} from '../../utils'
 const socket = io('ws://localhost:9000')
 const Item = List.Item
 
@@ -41,6 +42,7 @@ export default class Chat extends Component {
 	}
 	render() {
 		const { msgs } = this.props.chat
+		const chat_id = getChatId(this.props.match.params.user, this.props.user.info._id)
 		const user = this.props.match.params.user
 		const users = this.props.chat.users
 		if (!!!users[user]) {
@@ -60,7 +62,7 @@ export default class Chat extends Component {
 					{users[user].name}
 				</NavBar>
 				{
-					msgs.map((item, key) => {
+					msgs.filter(v => v.chat_id == chat_id).map((item, key) => {
 						const avatar = require(`../../static/img/${users[item.from].avatar}.jpg`)
 						return item.from == user ?
 							<List key={key}>

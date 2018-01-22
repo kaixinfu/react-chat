@@ -24,17 +24,17 @@ export default function (state = initialState, action) {
                 users: {
                     ...payload.users
                 },
-                unread: payload.msgs.filter(item => !item.readed).length
+                unread: payload.msgs.filter(item => !item.readed && item.to == payload._id).length
 			}
         case types.MSG_RECEIVE:
-            console.log('payload', payload)
+            const num = payload.data.to == payload._id ? 1 : 0
             return {
                 ...state,
                 msgs: [
                     ...state.msgs,
-                    payload
+                    payload.data
                 ],
-                unread: state.unread + 1
+                unread: state.unread + num
             }
         case types.MSG_READED:
             return {

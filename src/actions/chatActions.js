@@ -31,7 +31,7 @@ export const fetchUsers = type => dispatch => {
 	})
 }
 //获取聊天信息列表
-export const getMsgs = () => dispatch => {
+export const getMsgs = () => (dispatch, getState) => {
 	return fetch('/user/msgs', {
 		method: 'GET',
         'credentials' : 'include',
@@ -42,9 +42,10 @@ export const getMsgs = () => dispatch => {
 	}).then(res => {
 		return res.json()
 	}).then(res => {
+		const {_id} = getState().user.info
 		dispatch({
 			type: types.MSG_LIST,
-			payload: {msgs: res.data, users: res.users}
+			payload: {msgs: res.data, users: res.users, _id}
 		})
 	})
 }
@@ -53,12 +54,12 @@ export const sendMsg = data => dispatch  => {
     socket.emit('sendmsg', data)
 }
 //接收聊天信息
-export const receiveMsg = () => dispatch => {
+export const receiveMsg = () => (dispatch, getState) => {
 	socket.on('receivemsg', data => {
-		console.log('data', data)
+        const {_id} = getState().user.info
         dispatch({
 			type: types.MSG_RECEIVE,
-			payload: data
+			payload: {data, _id}
 		})
     })
 }

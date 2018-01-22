@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Switch, Route} from 'react-router-dom'
 import { NavBar, Icon } from 'antd-mobile';
+import _ from 'lodash'
 import Leader from '../leader'
 import Genuis from '../genuis'
 import Msg from '../msg'
@@ -13,7 +14,10 @@ import * as chatActions from '../../actions/chatActions'
 
 @connect(
 	state => (
-		{user: state.login.user || []}),
+		{
+			user: state.login.user || [],
+            chat: state.chat
+		}),
 	dispatch => (
 		{chatActions: bindActionCreators(chatActions, dispatch)})
 )
@@ -22,8 +26,10 @@ export default class Dashboard extends Component {
 		super()
 	}
 	componentDidMount() {
-        this.props.chatActions.getMsgs()
-        this.props.chatActions.receiveMsg()
+        if (_.isEmpty(this.props.chat.msgs)) {
+            this.props.chatActions.getMsgs()
+            this.props.chatActions.receiveMsg()
+		}
 	}
 	render() {
 		const {
