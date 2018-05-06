@@ -25,13 +25,18 @@ export default class Msg extends Component {
         this.props.chat.msgs.forEach(user => {
             msgsList[user.chat_id] = !_.isEmpty(msgsList[user.chat_id]) ? msgsList[user.chat_id] : [];
             msgsList[user.chat_id].push(user);
-        })
+        });
+        console.log(msgsList)
+        const sortMsgsList = Object.values(msgsList).sort((a, b) => b[b.length-1].create_time - a[a.length-1].create_time)
         const user_id = this.props.user.info._id
+        if(_.isEmpty(sortMsgsList)) {
+            return null
+        }
         return (
             <div className="App">
                 <h1 className="App-title">Welcome to Msg!</h1>
                 <List>
-                    {Object.values(msgsList).map((item, key) => {
+                    {sortMsgsList.map((item, key) => {
                         const unReadInfoNum = item.filter(item => !item.read && item.to == user_id).length;
                         const currentUserIfo = item[item.length - 1];
                         const targetId = currentUserIfo.form == user_id ? currentUserIfo.to : currentUserIfo.from;
