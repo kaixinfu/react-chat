@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {List} from 'antd-mobile';
+import {List,Badge} from 'antd-mobile';
 import {bindActionCreators} from 'redux'
 import _ from 'lodash';
 import * as userActions from '../../actions/registerActions'
@@ -32,10 +32,11 @@ export default class Msg extends Component {
                 <h1 className="App-title">Welcome to Msg!</h1>
                 <List>
                     {Object.values(msgsList).map((item, key) => {
+                        const unReadInfoNum = item.filter(item => !item.read && item.to == user_id).length;
                         const currentUserIfo = item[item.length - 1];
                         const targetId = currentUserIfo.form == user_id ? currentUserIfo.to : currentUserIfo.from;
                         const currentUser = this.props.chat.users[targetId];
-                        return (<Item key={key} thumb={require(`../../static/img/${currentUser.avatar}.jpg`)}>
+                        return (<Item key={key} extra={<Badge text={unReadInfoNum}/>} thumb={require(`../../static/img/${currentUser.avatar}.jpg`)}>
                             {item[item.length - 1].content}
                             <Brief>{currentUser.name ? currentUser.name : '无'}</Brief>
                         </Item>)
