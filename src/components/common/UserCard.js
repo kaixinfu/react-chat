@@ -13,7 +13,6 @@ export default class Genuis extends Component {
 		super()
 	}
 	handleClick = (v) => {
-		console.log('v', v)
 		this.props.history.push(`/chat/${v._id}`)
 	}
 	render() {

@@ -1,6 +1,6 @@
-# react+redux+react-route+socket+node+mongodb攻略
+# react+redux+react-route+socket+node 开发的一款聊天APP
 
-## Contains
+## 包含
 
 - [x] [react](https://reactjs.org/)
 - [x] [redux](http://cn.redux.js.org/)
@@ -21,7 +21,7 @@
 - [√] redux完整示范
 - [√] 聊天室
 
-## Terminal
+## 下载项目
 
 ```sh
 $ git clone git@github.com:liukaixin01/react-chat.git
