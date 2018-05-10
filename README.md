@@ -33,24 +33,23 @@ $ cd react-chat
 $ npm install
 ```
 
-## mongodb
+## 运行 MongoDB
 
 ```sh
-$ sudo brew install mongodb
+$ cd /usr/local/mongodb/bin
 ```
 ```sh
-$ sudo mkdir -p /data/db
+$ sudo ./mongod
 ```
 
-## Dev
-
-```sh
-$ sudo mongod
-```
+## 运行 node
 
 ```sh
 $ npm run node
 ```
+
+## 启动项目
+
 ```sh
 $ npm start
 ```
