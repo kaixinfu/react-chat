@@ -49,7 +49,7 @@ export default class Msg extends Component {
                                 key={lastMsg._id + key}
                                 onClick={() => this.props.history.push(`/chat/${targetId}`)}
                                 arrow='horizontal'
-                                extra={<Badge text={item.filter(item => !item.read && item.to == user_id).length}/>}
+                                extra={<Badge text={item.filter(item => !item.readed && item.to == user_id).length}/>}
                                 thumb={require(`../../static/img/${users[targetId].avatar}.jpg`)}>
                                 {lastMsg.content}
                                 <Brief>{users[targetId].name}</Brief>

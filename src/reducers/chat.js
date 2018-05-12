@@ -1,31 +1,31 @@
 import * as types from '../constants/ActionTypes'
 
 const initialState = {
-	msgs: [],
+    msgs: [],
     users: {},
-	unread: 0
+    unread: 0
 }
 
 export default function (state = initialState, action) {
-	
-	const {
-		type,
-		payload
-	} = action
-	
-	switch (type) {
+
+    const {
+        type,
+        payload
+    } = action
+
+    switch (type) {
         case types.MSG_LIST:
-			return {
-				...state,
+            return {
+                ...state,
                 msgs: [
                     ...state.msgs,
-					...payload.msgs
-				],
+                    ...payload.msgs
+                ],
                 users: {
                     ...payload.users
                 },
                 unread: payload.msgs.filter(item => !item.readed && item.to == payload._id).length
-			}
+            }
         case types.MSG_RECEIVE:
             const num = payload.data.to == payload._id ? 1 : 0
             return {
@@ -43,7 +43,15 @@ export default function (state = initialState, action) {
                     ...payload
                 ]
             }
-		default:
-			return state
-	}
+        case types.MSG_READ:
+            return {
+                ...state,
+                msgs: state.msgs.map(item => {
+                    return {...item, readed: payload.from.from == item.from ? true : item.readed}
+                }),
+                unread: state.unread - payload.num
+            }
+        default:
+            return state
+    }
 }

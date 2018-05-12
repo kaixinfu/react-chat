@@ -42,3 +42,5 @@ export const MSG_LIST = 'MSG_LIST'
 export const MSG_RECEIVE = 'MSG_RECEIVE'
 //消息已读
 export const MSG_READED = 'MSG_READED'
+//进入消息列表同步消息已读
+export const MSG_READ = 'MSG_READ'

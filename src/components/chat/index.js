@@ -34,6 +34,10 @@ export default class Chat extends Component {
 		}
 		this.fixCarousel()
     }
+    componentWillUnmount() {
+        const user = this.props.match.params.user
+        this.props.chatActions.readMsg(user)
+	}
     handleSubmite = () => {
 		this.props.chatActions.sendMsg({
             from: this.props.login.user._id,
