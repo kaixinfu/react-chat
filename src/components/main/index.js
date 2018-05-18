@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import { Result, Icon, WhiteSpace, List, Button, Modal } from 'antd-mobile';
+import { Result, WhiteSpace, List, Button, Modal } from 'antd-mobile';
 import {bindActionCreators} from 'redux'
 import _ from 'lodash'
 import browerCookies from 'browser-cookies'
@@ -21,9 +21,7 @@ const alert = Modal.alert;
 		{userActions: bindActionCreators(userActions, dispatch)})
 )
 export default class Main extends Component {
-	constructor() {
-		super()
-	}
+
 	goBrowerCookies = () => {
 		browerCookies.erase('user_id')
 		// window.location.href = window.location.href //刷新页面

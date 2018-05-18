@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as loginActions from '../../actions/loginActions'
@@ -13,9 +13,7 @@ import '../../App.css';
 )
 @withRouter
 export default class LoginRoute extends Component {
-	constructor() {
-		super()
-	}
+
 	componentDidMount() {
 		const publick = ['/login', '/register']
 		const pathname = this.props.location.pathname

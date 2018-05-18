@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import {Toast} from 'antd-mobile'
 import * as types from '../constants/ActionTypes'
 

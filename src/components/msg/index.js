@@ -15,9 +15,6 @@ const Brief = Item.Brief;
         {userActions: bindActionCreators(userActions, dispatch)})
 )
 export default class Msg extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     getLastMsg = (mags) => {
         return mags[mags.length - 1]
