@@ -10,7 +10,7 @@ import Msg from '../msg'
 import Main from '../main'
 import NavLinkBar from '../navLinkBar'
 import * as chatActions from '../../actions/chatActions'
-import QueueAnim from 'rc-queue-anim';
+// import QueueAnim from 'rc-queue-anim';
 // import '../../App.css';
 
 @connect(
@@ -70,7 +70,7 @@ export default class Dashboard extends Component {
                 component: Main,
             }
         ]
-        const _router = navList.find(item=>item.path==pathname)
+        // const _router = navList.find(item=>item.path==pathname)
         return (
             <div>
                 <NavBar
