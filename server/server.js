@@ -4,11 +4,32 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import model from './model';
-import React, {Component} from 'react';
+import React from 'react';
+import {renderToString} from 'react-dom/server'
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {BrowserRouter, StaticRouter} from 'react-router-dom';
+import csshook from 'css-modules-require-hook/preset';
+import {applyMiddleware, createStore, compose} from 'redux';
+import thunk from 'redux-thunk'
+import reducers from '../src/reducers'
+import assethook from 'asset-require-hook';
 
-function Test() {
-    return <h2>222</h2>
-}
+assethook({
+    extensions: ['png']
+});
+// assethook({
+//     extensions: ['jpg']
+// });
+// require('asset-require-hook')({
+//     extensions: ['jpg']
+// })
+
+import APP from '../src/App';
+import staticPath from '../build/asset-manifest'
+
+// import {store} from '../src/store/createStore';
+
 const app = express();
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
@@ -37,7 +58,31 @@ app.use(function (req, res, next) {
     if (req.url.startsWith('/user/') || req.url.startsWith('/static/')) {
         return next()
     }
-    console.log('path======>',path.resolve('build/index.html'))
+console.log('assethook.........',assethook)
+    const context = {}
+    const store = createStore(reducers, compose(applyMiddleware(thunk)))
+    const serverRender = renderToString(
+        (<Provider store={store}>
+            <StaticRouter location={req.url} context={context}>
+                <APP/>
+            </StaticRouter>
+        </Provider>))
+    const basicHtml = `<!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="theme-color" content="#000000">
+            <title>React App</title>
+          </head>
+          <body>
+            <noscript>
+              You need to enable JavaScript to run this app.
+            </noscript>
+            <div id="root">${serverRender}</div>
+          </body>
+        </html>`
+    // return res.send(basicHtml)
     return res.sendFile(path.resolve('build/index.html'))
 })
 app.use('/', express.static(path.resolve('build')));
