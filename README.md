@@ -1,4 +1,4 @@
-# react+redux+react-route+socket+node 开发的一款聊天APP
+# react开发的一款聊天APP
 
 ## 包含
 
@@ -12,14 +12,15 @@
 - [x] [mongodb](http://www.runoob.com/mongodb/mongodb-tutorial.html)
 
 ## 功能预览
-- [√] 项目按路由模块加载
-- [√] 登录，以及cokie使用
-- [√] 注册
-- [√] 欢迎主页
-- [√] 左侧菜单，正常mini切换
+- [√] react+redux完整实例
 - [√] fetch获取数据
-- [√] redux完整示范
-- [√] 聊天室
+- [√] 项目按路由模块加载
+-  [√] 欢迎主页
+- [√] 注册、登录、cokie的使用
+- [√] 聊天室(可开启两个浏览器窗口进行聊天测试)
+- [√] 实现服务端渲染
+- [√] 使用新特性对项目做一些优化
+- [√] 打包上线
 
 ## 下载项目
 
@@ -33,7 +34,7 @@ $ cd react-chat
 $ npm install
 ```
 
-## 运行 MongoDB
+## 开启MongoDB
 
 ```sh
 $ cd /usr/local/mongodb/bin
@@ -42,19 +43,26 @@ $ cd /usr/local/mongodb/bin
 $ sudo ./mongod
 ```
 
-## 运行 node
+## 运行node环境
 
 ```sh
 $ npm run node
 ```
-
 ## 启动项目
 
 ```sh
 $ npm start
 ```
+```sh
+$ npm run serverEs6
+```
+## 打包项目
+```sh
+$ npm run build
+```
 
-## Preview
-<img src="http://liukaixin.cn/react-chat/git-hub/login.png" width="300">  <img src="http://liukaixin.cn/react-chat/git-hub/register.png" width="300">
-<img src="http://liukaixin.cn/react-chat/git-hub/leader-register.png" width="300">  <img src="http://liukaixin.cn/react-chat/git-hub/genuis-register.png" width="300">
-<img src="http://liukaixin.cn/react-chat/git-hub/leader-view.png" width="300"> <img src="http://liukaixin.cn/react-chat/git-hub/genuis-view.png" width="300">
+## 效果预览
+<img src="http://liukaixin.cn/react-chat/git-hub/chat-login.gif" width="400">  <img src="http://liukaixin.cn/react-chat/git-hub/chat-go.gif" width="400">
+<img src="http://liukaixin.cn/react-chat/git-hub/chating.gif" width="800">
+###
+>如果对您有帮助，别忘记satr哦！
