@@ -35,7 +35,6 @@ export default class Msg extends Component {
         const users = this.props.chat.users;
         return (
             <div className="App">
-                <h1 className="App-title">Welcome to Msg!</h1>
                 <List>
                     {sortMsgsList.map((item, key) => {
                         let lastMsg = this.getLastMsg(item);

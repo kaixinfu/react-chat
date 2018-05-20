@@ -8,6 +8,7 @@ import _ from 'lodash'
 import * as chatActions from '../../actions/chatActions'
 import '../../App.css';
 import {getChatId} from '../../utils'
+import QueueAnim from 'rc-queue-anim';
 // const socket = io('ws://localhost:9000')
 const Item = List.Item
 
@@ -84,6 +85,7 @@ export default class Chat extends Component {
                 >
                     {users[user].name}
                 </NavBar>
+                <QueueAnim delay={100}>
                 {
                     msgs.filter(v => v.chat_id == chat_id).map((item, key) => {
                         const avatar = require(`../../static/img/${users[item.from].avatar}.jpg`)
@@ -105,6 +107,7 @@ export default class Chat extends Component {
                             </List>
                     })
                 }
+                </QueueAnim>
                 <div className='stick-footer'>
                     <List>
                         <InputItem

@@ -10,6 +10,7 @@ import Msg from '../msg'
 import Main from '../main'
 import NavLinkBar from '../navLinkBar'
 import * as chatActions from '../../actions/chatActions'
+import QueueAnim from 'rc-queue-anim';
 // import '../../App.css';
 
 @connect(
@@ -69,6 +70,7 @@ export default class Dashboard extends Component {
                 component: Main,
             }
         ]
+        const _router = navList.find(item=>item.path==pathname)
         return (
             <div>
                 <NavBar
@@ -76,6 +78,10 @@ export default class Dashboard extends Component {
                     mode="dard"
                 >{navList.find(v => v.path == pathname).title}</NavBar>
                 <div style={{marginTop: 40}}>
+                    {/*<QueueAnim type={['right', 'left']} duration={500}>*/}
+                        {/*<Route key={_router.path} path={_router.path}*/}
+                               {/*component={_router.component}></Route>*/}
+                    {/*</QueueAnim>*/}
                     <Switch>
                         {navList.map((item, key) => <Route key={key} path={item.path}
                                                            component={item.component}></Route>)}
