@@ -58,7 +58,6 @@ app.use(function (req, res, next) {
     if (req.url.startsWith('/user/') || req.url.startsWith('/static/')) {
         return next()
     }
-console.log('assethook.........',assethook)
     const context = {}
     const store = createStore(reducers, compose(applyMiddleware(thunk)))
     const serverRender = renderToString(
@@ -74,15 +73,17 @@ console.log('assethook.........',assethook)
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <meta name="theme-color" content="#000000">
             <title>React App</title>
+            <link rel="stylesheet" href="/${staticPath['main.css']}">
           </head>
           <body>
             <noscript>
               You need to enable JavaScript to run this app.
             </noscript>
             <div id="root">${serverRender}</div>
+            <script src="/${staticPath['main.js']}"></script>
           </body>
         </html>`
-    // return res.send(basicHtml)
+    return res.send(basicHtml)
     return res.sendFile(path.resolve('build/index.html'))
 })
 app.use('/', express.static(path.resolve('build')));

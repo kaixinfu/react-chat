@@ -70,6 +70,10 @@ export default class Dashboard extends Component {
                 component: Main,
             }
         ]
+        if (_.isEmpty(navList.find(v => v.path == pathname))){
+            return null
+        }
+        console.log('navList', navList.find(v => v.path == pathname))
         // const _router = navList.find(item=>item.path==pathname)
         return (
             <div>
