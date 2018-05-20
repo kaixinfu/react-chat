@@ -9,7 +9,7 @@ import './config'
 
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(
+ReactDOM.hydrate(
     <Provider store={store}>
         <BrowserRouter>
             <APP/>

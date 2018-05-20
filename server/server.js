@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import model from './model';
 import React from 'react';
-import {renderToString} from 'react-dom/server'
+import {renderToString, renderToNodeStream} from 'react-dom/server'
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {BrowserRouter, StaticRouter} from 'react-router-dom';
@@ -18,12 +18,6 @@ import assethook from 'asset-require-hook';
 assethook({
     extensions: ['png']
 });
-// assethook({
-//     extensions: ['jpg']
-// });
-// require('asset-require-hook')({
-//     extensions: ['jpg']
-// })
 
 import APP from '../src/App';
 import staticPath from '../build/asset-manifest'
@@ -60,13 +54,7 @@ app.use(function (req, res, next) {
     }
     const context = {}
     const store = createStore(reducers, compose(applyMiddleware(thunk)))
-    const serverRender = renderToString(
-        (<Provider store={store}>
-            <StaticRouter location={req.url} context={context}>
-                <APP/>
-            </StaticRouter>
-        </Provider>))
-    const basicHtml = `<!DOCTYPE html>
+    res.write(`<!DOCTYPE html>
         <html lang="en">
           <head>
             <meta charset="utf-8">
@@ -79,11 +67,21 @@ app.use(function (req, res, next) {
             <noscript>
               You need to enable JavaScript to run this app.
             </noscript>
-            <div id="root">${serverRender}</div>
+            <div id="root">`)
+    const serverRender = renderToNodeStream(
+        (<Provider store={store}>
+            <StaticRouter location={req.url} context={context}>
+                <APP/>
+            </StaticRouter>
+        </Provider>));
+    serverRender.pipe(res, {end: false});
+    serverRender.on('end', () => {
+        res.write(`</div>
             <script src="/${staticPath['main.js']}"></script>
           </body>
-        </html>`
-    return res.send(basicHtml)
+        </html>`);
+        res.end()
+    })
     return res.sendFile(path.resolve('build/index.html'))
 })
 app.use('/', express.static(path.resolve('build')));
