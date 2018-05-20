@@ -6,6 +6,7 @@
     "antd-mobile": "^2.0.1-alpha.0",
     "autoprefixer": "7.1.6",
     "axios": "^0.17.1",
+    "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
@@ -64,7 +65,9 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "node": "nodemon server/server.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "serverEs6": "NODE_ENV=test nodemon --exec babel-node server/server.js",
+    "server": "node server/server.js"
   },
   "jest": {
     "collectCoverageFrom": [
