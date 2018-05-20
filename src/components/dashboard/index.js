@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route,Redirect} from 'react-router-dom'
 import {NavBar} from 'antd-mobile';
 import _ from 'lodash'
 import Leader from '../leader'
@@ -70,21 +70,17 @@ export default class Dashboard extends Component {
                 component: Main,
             }
         ]
-        if (_.isEmpty(navList.find(v => v.path == pathname))){
-            return null
-        }
-        console.log('navList', navList.find(v => v.path == pathname))
-        // const _router = navList.find(item=>item.path==pathname)
-        return (
+        const _router = navList.find(item => item.path == pathname)
+        return _router ? (
             <div>
                 <NavBar
                     className='fixd-header'
                     mode="dard"
-                >{navList.find(v => v.path == pathname).title}</NavBar>
+                >{_router.title}</NavBar>
                 <div style={{marginTop: 40}}>
                     {/*<QueueAnim type={['right', 'left']} duration={500}>*/}
-                        {/*<Route key={_router.path} path={_router.path}*/}
-                               {/*component={_router.component}></Route>*/}
+                    {/*<Route key={_router.path} path={_router.path}*/}
+                    {/*component={_router.component}></Route>*/}
                     {/*</QueueAnim>*/}
                     <Switch>
                         {navList.map((item, key) => <Route key={key} path={item.path}
@@ -93,6 +89,6 @@ export default class Dashboard extends Component {
                 </div>
                 <NavLinkBar data={navList}/>
             </div>
-        );
+        ) : <Redirect to='/login' />;
     }
 }
