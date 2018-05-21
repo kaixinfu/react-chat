@@ -65,4 +65,4 @@ $ npm run build
 <img src="http://liukaixin.cn/react-chat/git-hub/chat-login.gif" width="400">  <img src="http://liukaixin.cn/react-chat/git-hub/chat-go.gif" width="400">
 <img src="http://liukaixin.cn/react-chat/git-hub/chating.gif" width="800">
 ###
->如果对您有帮助，别忘记satr哦！
+>如果对您有帮助，别忘记star哦！
